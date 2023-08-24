@@ -1,6 +1,10 @@
 #include "projectlib.h"
 
 
+const int ROOTS_COUNT_TWO = 2;
+const int ROOTS_COUNT_ONE = 2;
+
+
 
 
 
@@ -13,6 +17,6 @@ bool equal_double(double b1, double b2){  //checks whether two numbers are equal
 } //finished
 
 bool isZero(double b3){ //checks whether number is equal to 0
-    return equal_double(b3, 0);
+    return fabs(b3)<ESTIMATION;
 }
 

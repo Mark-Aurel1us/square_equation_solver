@@ -17,7 +17,7 @@ void output_answers(int number, double x1, double x2, char err){
     case 0:
         printf("This expressions has no answers");
         break;
-    case 1:printf("This expressions has 1 answer: %lg", x1);
+    case 1:printf("This expressions has 1 answer: %lg", x1); // format
         break;
     case 2:printf("This expressions has 2 answers: %lg and %lg", x1, x2);
         break;
@@ -37,12 +37,13 @@ void user_input_reading(double* a, double* b, double* c, char* err, int n){
 
     if(n < 1){
         printf("Shut down, stupid user! You are too silly even to type three numbers correctly!");
-        *err = '3';
+        *err = ERROR_UNCAUGHT; // ???
         return;
     }
 
-    int status = -2;
+
     printf("Input 3 numbers\n");
+    int status = -2; // ??? naming
     status = scanf("%lg %lg %lg", a, b, c);
 
     if (status < 3 || !isfinite(*a) || !isfinite(*b) || !isfinite(*c) ){

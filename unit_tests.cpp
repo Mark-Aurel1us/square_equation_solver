@@ -6,8 +6,7 @@ void test_mode(){
     printf("TEST MODE ACTIVATED\n");
 
     bool all_correct = true;
-    //const int test_count = 4; // automatically count number of tests. read Prata/K&R    //deprecated, removed
-                                // i didn't read, i just did it
+
     struct test_case tests[] = { // array of test cases
         {
             1,//a
@@ -42,7 +41,7 @@ void test_mode(){
         {
             1,
             2,
-            2,
+            1,
 
             0,
             NAN,
@@ -52,7 +51,7 @@ void test_mode(){
         {
         a,//double
         b,//double
-        c,//double
+        c,//double//
 
         n,//int
         x1,//double
@@ -60,13 +59,14 @@ void test_mode(){
         }
         */
     };
-    for(long unsigned int i = 0; i < sizeof(tests)/sizeof(tests[0]); i++){
-        all_correct &= unit_test((tests+i), i + 1);
+
+    for(long unsigned int i = 0; i < sizeof(tests)/sizeof(tests[0]); i++){ // size_t
+        all_correct &= unit_test(tests + i, i + 1);
     }
+
     if(all_correct){
         printf("All tests passed successfully!");
     }
-
 }
 
 
@@ -76,21 +76,21 @@ void test_mode(){
 
 
 
-bool unit_test(const test_case* test, int i){
-        double a = (*test).a,
+bool unit_test(const test_case* test, size_t i){
+/*        double a = (*test).a,
                b = (*test).b,
                c = (*test).c,
      x1_expected = (*test).x1_expected,
      x2_expected = (*test).x2_expected;
   int n_expected = (*test).n_expected;
-
+*/
     char err = '0';
     double x1 = NAN,
            x2 = NAN;
 
     int n = square_equation_solution((*test).a, (*test).b, (*test).c, &x1, &x2, &err);
 
-    if(n == n_expected && err == '0'){
+    if(n == (*test).n_expected && err == '0'){
             if(n == 0 || n == INFINITE_ROOTS_NUMBER){
                 return true;
             }
@@ -106,12 +106,9 @@ bool unit_test(const test_case* test, int i){
             }
     }
 
-    char a_sign = (a > 0) ? '\0' : '-';//write sign of a is less than 0
-    char b_sign = (b > 0) ?  '+' : '-';//write sign of b
-    char c_sign = (c > 0) ?  '+' : '-';//write sign of c
-    a = fabs(a);
-    b = fabs(b);
-    c = fabs(c);
+    char a_sign = ((*test).a > 0) ? ' ' : '-';//write sign of a is less than 0
+    char b_sign = ((*test).b > 0) ?  '+' : '-';//write sign of b
+    char c_sign = ((*test).c > 0) ?  '+' : '-';//write sign of c
 
     printf( "Error in test case %d.\n"
             "   Tested Equation: %c%lg*x^2%c%lg*x%c%lg=0\n"
@@ -122,6 +119,6 @@ bool unit_test(const test_case* test, int i){
             "   Instead got:\n"
             "       x=%lg\n"
             "       x=%lg\n"
-            "       Number of roots:%d\n", i, a_sign, a, b_sign, b, c_sign, c, x1_expected, x2_expected, n_expected, x1, x2, n);
+            "       Number of roots:%d\n", i, a_sign, fabs(test->a), b_sign, fabs(test->b), c_sign, fabs(test->c), test->x1_expected, test->x2_expected, test->n_expected, x1, x2, n);
     return false;
 }

@@ -4,10 +4,9 @@
 #include "projectlib.h"
 #include "equation_solution.h"
 
-#define TEST_MODE
 
 void test_mode();
-bool unit_test(const struct test_case* test, int i);
+bool unit_test(const struct test_case* test, size_t i);
 
 
 //structures

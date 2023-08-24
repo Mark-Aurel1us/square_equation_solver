@@ -4,8 +4,7 @@
 
 void help(){    //outputs documentation
     printf( "Sharipov Akram`s Square Equation Solver\n"
-            "(C) 2023, Akram Sharipov, Republic of Bashkortostan"
-            "\n"
+            "(C) 2023, Akram Sharipov, Republic of Bashkortostan\n"
             "Usage:\n"
             "\n"
             "To solve equation like a*x^2+b*x+c=0,\n"
@@ -40,9 +39,8 @@ void debug(char err){
             break;
         case ERROR_UNCAUGHT:
             break;
-        default:printf("Error %d\n", err);
+        default:
+            printf("Unknown Error %d\n", err);
     }
-
-    return;
 }
 

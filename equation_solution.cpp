@@ -1,9 +1,9 @@
 #include "equation_solution.h"
 
-
-
-
-
+/**
+ * A function that counts discriminant of square equation
+ * @param a - first quofficient
+ */
 double discriminant(double a, double b, double c){
     return b * b - 4 * a * c;
 }
@@ -19,7 +19,7 @@ double linear_equation_solution(double b, double c, double* x1, char*err){
             return 0;
         }
     }else{//a==0
-            *x1= -c / b;
+            *x1 = -c / b;
         }
         return 1;
 }//finished
@@ -37,20 +37,18 @@ int square_equation_solution(double a, double b, double c, double* x1, double* x
 
         double d = discriminant(a, b, c);//Discriminant
 
-        if(d < 0){
-
-            return 0;
-
-        }else if(isZero(d)){//d==0
-
+        if(isZero(d)){
             *x1 = -b / (2 * a);
             if(!isfinite(*x1)){
                 *err = ERROR_MATHEMATICAL;
             }
             return 1;
+        }else if(d < 0){
+            return 0;
+
         }else{
-            *x1 = (-b + sqrt(d) )/( 2 * a );
-            *x2 = (-b - sqrt(d) )/( 2 * a );
+            *x1 = (-b + sqrt(d) ) / ( 2 * a );
+            *x2 = (-b - sqrt(d) ) / ( 2 * a );
 
             if(!isfinite(*x1) || !isfinite(*x2)){
                 *err = ERROR_MATHEMATICAL;
