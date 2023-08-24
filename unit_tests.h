@@ -8,6 +8,7 @@
 void test_mode();
 bool unit_test(const struct test_case* test, size_t i);
 void print_number_of_roots_dbg(int roots_n);
+void print_not_nan(double x);
 
 
 //structures

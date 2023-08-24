@@ -79,23 +79,16 @@ bool unit_test(const test_case* test, size_t i){
         printf( "Error in test case %d.\n"
                 "   Tested Equation: %c%lg*x^2%c%lg*x%c%lg=0\n"
                 "   Expected results:\n", (int)i, a_sign, fabs(test->a), b_sign, fabs(test->b), c_sign, fabs(test->c));
-    if(!isnan(test->x1_expected)){
-        printf( "      x=%lg\n", test->x1_expected);
-    }
-    if(!isnan(test->x2_expected)){
-        printf( "      x=%lg\n", test->x2_expected);
-    }
-       print_number_of_roots_dbg( test->n_expected);
-        printf( "   Instead got:\n");
-    if(!isnan(x1)){
-        printf( "       x=%lg\n", x1);
-    }
-    if(!isnan(x2)){
-        printf( "       x=%lg\n", x2);
-    }
-        print_number_of_roots_dbg( n);
-        return false;
+    print_not_nan(test->x1_expected);
+    print_not_nan(test->x2_expected);
+    print_number_of_roots_dbg( test->n_expected);
+    print_not_nan(x1);
+    print_not_nan(x2);
+    print_number_of_roots_dbg( n);
+    return false;
 }
+
+
 
 
 void print_number_of_roots_dbg(int roots_n){
@@ -107,6 +100,13 @@ printf( "      Number of roots:");
             printf("%d",roots_n);
     }
 printf("\n");
+}
+
+
+void print_not_nan(double x){
+    if(!isnan(x)){
+        printf( "       x=%lg\n", x);
+    }
 }
 
 
