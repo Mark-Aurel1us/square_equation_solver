@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1692868104 source:/home/marka/codeblocks/cpp/projects/square_v1/main.cpp
+1692877851 source:/home/marka/codeblocks/cpp/projects/square_v1/main.cpp
 	"equation_solution.h"
 	"input_output.h"
 	"debugger.h"
@@ -12,13 +12,13 @@
 
 1692796250 /home/marka/codeblocks/cpp/projects/square_v1/main_header.h
 
-1692807109 /home/marka/codeblocks/cpp/projects/square_v1/equation_solution.h
+1692876752 /home/marka/codeblocks/cpp/projects/square_v1/equation_solution.h
 	"projectlib.h"
 
-1692808147 source:/home/marka/codeblocks/cpp/projects/square_v1/equation_solution.cpp
+1692876877 source:/home/marka/codeblocks/cpp/projects/square_v1/equation_solution.cpp
 	"equation_solution.h"
 
-1692807652 /home/marka/codeblocks/cpp/projects/square_v1/projectlib.h
+1692876031 /home/marka/codeblocks/cpp/projects/square_v1/projectlib.h
 	<stdio.h>
 	<math.h>
 	<assert.h>
@@ -29,23 +29,23 @@
 1692864558 source:/home/marka/codeblocks/cpp/projects/square_v1/output_answers.cpp
 	"output_answers.h"
 
-1692865230 source:/home/marka/codeblocks/cpp/projects/square_v1/projectlib.cpp
+1692873814 source:/home/marka/codeblocks/cpp/projects/square_v1/projectlib.cpp
 	"projectlib.h"
 
-1692807261 /home/marka/codeblocks/cpp/projects/square_v1/debugger.h
+1692875474 /home/marka/codeblocks/cpp/projects/square_v1/debugger.h
 	"projectlib.h"
 
-1692808059 source:/home/marka/codeblocks/cpp/projects/square_v1/debugger.cpp
+1692876477 source:/home/marka/codeblocks/cpp/projects/square_v1/debugger.cpp
 	"debugger.h"
 
-1692869959 source:/home/marka/codeblocks/cpp/projects/square_v1/unit_tests.cpp
+1692878201 source:/home/marka/codeblocks/cpp/projects/square_v1/unit_tests.cpp
 	"unit_tests.h"
 
-1692867996 /home/marka/codeblocks/cpp/projects/square_v1/unit_tests.h
+1692878552 /home/marka/codeblocks/cpp/projects/square_v1/unit_tests.h
 	"projectlib.h"
 	"equation_solution.h"
 
-1692865476 source:/home/marka/codeblocks/cpp/projects/square_v1/input_output.cpp
+1692877158 source:/home/marka/codeblocks/cpp/projects/square_v1/input_output.cpp
 	"input_output.h"
 
 1692864520 /home/marka/codeblocks/cpp/projects/square_v1/input_output.h

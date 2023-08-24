@@ -3,7 +3,7 @@
 #include "debugger.h" //error catcher
 #include "unit_tests.h" //encommenting this line avoids including test mode files
 
-//#define TEST_MODE //to disable test code, encomment this line
+#define TEST_MODE //to disable test code, encomment this line
 
 
  /*
@@ -39,7 +39,7 @@ int main(){
     double a = NAN, b = NAN, c = NAN, //input values
            x1 = NAN, x2 = NAN;        //answers
 
-    user_input_reading(&a, &b, &c, &err, 7); //importing values, 7 tries to type
+    user_input_reading(&a, &b, &c, &err, TRIES_TO_TYPE); //importing values, 7 tries to type
 
     int number_of_roots = square_equation_solution(a, b, c, &x1, &x2, &err);
 

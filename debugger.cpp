@@ -31,8 +31,6 @@ void debug(char err){
         case ERROR_INVALID_INPUT:
             printf("Error 1: Invalid Input\n");
             buffer_eraser();
-            printf("Please, read documentation and try again:\n");
-            help();
             break;
         case ERROR_MATHEMATICAL:
             printf("Error 2: Mathematical error (while trying to calculate answer an error has occured)");

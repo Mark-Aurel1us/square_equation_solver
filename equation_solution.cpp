@@ -8,7 +8,7 @@ double discriminant(double a, double b, double c){
     return b * b - 4 * a * c;
 }
 
-double linear_equation_solution(double b, double c, double* x1, char*err){
+int linear_equation_solution(double b, double c, double* x1, char*err){
     assert(x1 != nullptr);
     assert(err != nullptr);
 
@@ -16,15 +16,17 @@ double linear_equation_solution(double b, double c, double* x1, char*err){
         if (isZero(c)){//c==b==a==0
             return INFINITE_ROOTS_NUMBER;
         }else{//a==b==0
-            return 0;
+            return NO_ROOTS;
         }
     }else{//a==0
             *x1 = -c / b;
         }
-        return 1;
+        return ONE_ROOT_NUMBER;
 }//finished
 
 int square_equation_solution(double a, double b, double c, double* x1, double* x2, char* err){
+    if(*err != WITHOUT_ERRORS){return NO_ROOTS;}
+
     assert(x1 != nullptr);
     assert(x2 != nullptr);
     assert(err != nullptr);
@@ -42,9 +44,9 @@ int square_equation_solution(double a, double b, double c, double* x1, double* x
             if(!isfinite(*x1)){
                 *err = ERROR_MATHEMATICAL;
             }
-            return 1;
+            return ONE_ROOT_NUMBER;
         }else if(d < 0){
-            return 0;
+            return NO_ROOTS;
 
         }else{
             *x1 = (-b + sqrt(d) ) / ( 2 * a );
@@ -53,7 +55,7 @@ int square_equation_solution(double a, double b, double c, double* x1, double* x
             if(!isfinite(*x1) || !isfinite(*x2)){
                 *err = ERROR_MATHEMATICAL;
             }
-            return 2;
+            return TWO_ROOTS_NUMBER;
         }
     }
 }

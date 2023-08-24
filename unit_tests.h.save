@@ -1,3 +1,4 @@
+
 #ifndef UNIT_TESTS_H_INCLUDED
 #define UNIT_TESTS_H_INCLUDED
 
@@ -7,7 +8,6 @@
 
 void test_mode();
 bool unit_test(const struct test_case* test, size_t i);
-void print_number_of_roots_dbg(int roots_n);
 
 
 //structures

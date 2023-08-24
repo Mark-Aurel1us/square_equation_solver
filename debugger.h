@@ -3,6 +3,7 @@
 
 #include "projectlib.h"
 
+
 void help();
 void debug(char err);
 void buffer_eraser();
