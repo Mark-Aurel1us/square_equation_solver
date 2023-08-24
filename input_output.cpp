@@ -1,35 +1,37 @@
 #include "input_output.h"
 
 
-void format_output(double* x){
-    assert(x != nullptr);
-    *x = isZero(*x) ? 0 : *x;
-}
 
-void output_answers(int number, double x1, double x2, char err){
+void output_answers(double a, double b, double c, int number, double x1, double x2, char* err){
     format_output(&x1);
     format_output(&x2);
-    if(err != WITHOUT_ERRORS){
+    if(*err != WITHOUT_ERRORS){
         return;//preventing from outputting invalid results
     }
-
+    printf("Equation ");
+    output_equation(a,b,c);
+    printf(" has ");
     switch(number){
     case NO_ROOTS:
-        printf("This expressions has no answers");
+        printf("no roots");
         break;
-    case ONE_ROOT_NUMBER:printf("This expressions has 1 answer: %lg", x1); // format
+    case ONE_ROOT:
+        printf("1 root: %lg", x1); // format
         break;
-    case TWO_ROOTS_NUMBER:printf("This expressions has 2 answers: %lg and %lg", x1, x2);
+    case TWO_ROOTS:
+        printf("2 roots: %lg and %lg", x1, x2);
         break;
-    case INFINITE_ROOTS_NUMBER:
-        printf("This expressions has infinite amount of roots");
+    case INF_ROOTS:
+        printf("infinite amount of roots");
         break;
+    default:
+        *err = ERROR_UNCAUGHT;
     }
     printf("\n\n");
 }
 
 
-void user_input_reading(double* a, double* b, double* c, char* err, int n){
+void user_input_reading(double* a, double* b, double* c, char* err, int n){ // remove n parameter; use static variable
     assert(a != nullptr);
     assert(b != nullptr);
     assert(c != nullptr);
@@ -37,17 +39,16 @@ void user_input_reading(double* a, double* b, double* c, char* err, int n){
 
     if(n < LAST_TRY){
         printf("Shut down, stupid user! You are too silly even to type three numbers correctly!\n");
-        *err = ERROR_UNCAUGHT; // ???
+        *err = ERROR_UNCAUGHT;
         return;
     }
 
-
     printf("Input 3 numbers\n");
-    int scan_status = scanf("%lg %lg %lg", a, b, c);
+    int scan_status = scanf("%lg %lg %lg[ \n]", a, b, c);
 
     if (scan_status != CORRECT_SCAN_STATUS){
         debug(ERROR_INVALID_INPUT);//throwing exception via dbg function if something wrong with input
-        if(n==TRIES_TO_TYPE){
+        if(n == TRIES_TO_TYPE){
             help();
             printf("Please, read documentation and try again:\n");
         }

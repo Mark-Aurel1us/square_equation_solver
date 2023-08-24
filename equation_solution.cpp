@@ -14,14 +14,14 @@ int linear_equation_solution(double b, double c, double* x1, char*err){
 
     if (isZero(b)){
         if (isZero(c)){//c==b==a==0
-            return INFINITE_ROOTS_NUMBER;
+            return INF_ROOTS;
         }else{//a==b==0
             return NO_ROOTS;
         }
     }else{//a==0
             *x1 = -c / b;
         }
-        return ONE_ROOT_NUMBER;
+        return ONE_ROOT;
 }//finished
 
 int square_equation_solution(double a, double b, double c, double* x1, double* x2, char* err){
@@ -44,7 +44,7 @@ int square_equation_solution(double a, double b, double c, double* x1, double* x
             if(!isfinite(*x1)){
                 *err = ERROR_MATHEMATICAL;
             }
-            return ONE_ROOT_NUMBER;
+            return ONE_ROOT;
         }else if(d < 0){
             return NO_ROOTS;
 
@@ -55,7 +55,7 @@ int square_equation_solution(double a, double b, double c, double* x1, double* x
             if(!isfinite(*x1) || !isfinite(*x2)){
                 *err = ERROR_MATHEMATICAL;
             }
-            return TWO_ROOTS_NUMBER;
+            return TWO_ROOTS;
         }
     }
 }
