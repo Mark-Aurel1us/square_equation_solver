@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
+#include <ctype.h>
+#include <limits.h>
 
 //constants
 
@@ -37,6 +39,9 @@ const int LAST_TRY = 1;
 #define COLOR_NONE  "\033[39m"
 #define COLOR_GREEN "\033[32m"
 
+
+//macros
+#define OUTERR(X) fprintf(stderr, X "\n");
 
 
 

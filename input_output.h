@@ -4,7 +4,7 @@
 #include "debugger.h"
 #include "projectlib.h"
 
-void user_input_reading(double* a, double* b, double* c, char*err);
+char user_input_reading(double* a, double* b, double* c);
 void output_answers(double a, double b, double c, int number, double x1, double x2, char* err);
 bool buffer_eraser();
 

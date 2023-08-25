@@ -119,7 +119,7 @@ void print_not_nan(double x){
 
 
 
-
+//errors to stderr
 
 bool file_unit_tests(){
     bool ok = true;
@@ -128,7 +128,8 @@ bool file_unit_tests(){
     int i = 0;
     FILE *file_ptr = fopen("tests.txt", "r");
     if(file_ptr == nullptr){
-    printf(COLOR_RED "File with tests not found. Create texts.txt file with valid unit tests in this directory" COLOR_RED "\n");
+        fprintf(stderr, COLOR_RED "File with tests not found. Create texts.txt file with valid unit tests in this directory" COLOR_RED "\n");
+        OUTERR("File not found")
         return true;
     }
     printf("Tests from file are running now.\n");
@@ -141,7 +142,7 @@ bool file_unit_tests(){
         i++;
     }
     if(ok){printf("%d tests from file ran successfully\n", i - 1);}
-    fclose(file_ptr);
+    fclose(file_ptr);//check
     return ok;
 }
 

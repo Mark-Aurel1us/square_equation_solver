@@ -54,19 +54,13 @@ void output_answers(double a, double b, double c, int number, double x1, double 
     @param err - variable where error code is to be stored
  */
 
-void user_input_reading(double* a, double* b, double* c, char* err){ // rewrite with cycle
+char user_input_reading(double* a, double* b, double* c){ // return err
 
-    for(int i=0;i<TRIES_TO_TYPE;i++){///backward counter to prevent from long recursion and to output help docs only the first time user typed wrong
+    for(int i = 0; i < TRIES_TO_TYPE; i++){///backward counter to prevent from long recursion and to output help docs only the first time user typed wrong
 
         assert(a != nullptr);
         assert(b != nullptr);
         assert(c != nullptr);
-        assert(err != nullptr);
-
-        if(i == TRIES_TO_TYPE - 1){///if too many bad tries
-            printf(COLOR_RED "Shut down, stupid user! You are too silly even to type three numbers correctly!\n" COLOR_NONE);///warning user
-            *err = ERROR_UNCAUGHT;///preventing wrong output with error code
-        }
 
         printf("Input 3 numbers\n");///ask user to type
         int scan_status = scanf("%lg %lg %lg", a, b, c);/// scanning numbers, counting how much scanned successfully (must be CORRECT_SCAN_STATUS=3)
@@ -80,12 +74,16 @@ void user_input_reading(double* a, double* b, double* c, char* err){ // rewrite 
             }
 
             ///decreasing counter before recursively calling function to avoid infinite cycle and
-            user_input_reading(a, b, c, err);///recursively calling this function in order to give user next try
+ //           user_input_reading(a, b, c);///recursively calling this function in order to give user next try
         }else{
-            return;
+            return WITHOUT_ERRORS;
         }
 
     }
+
+    printf(COLOR_RED "Shut down, stupid user! You are too silly even to type three numbers correctly!\n" COLOR_NONE);///warning user
+    return ERROR_UNCAUGHT;///preventing wrong output with error code
+
 }
 
 
@@ -98,11 +96,13 @@ void user_input_reading(double* a, double* b, double* c, char* err){ // rewrite 
 
  */
 bool buffer_eraser(){
-    bool ret = false; //!<this variable checks whether string has garbage or not
+    bool ret = false; ///this variable checks whether string has garbage or not
     int c = getchar();///reading next character
 
+    //isspace(c)
+
     while(c != '\n'){///until the end of line checks
-        if(c != ' '){ret = true;}///if garbage found (garbage is everything except ' ' and '\n')
+        if(!isspace(c)){ret = true;}///if garbage found (garbage is everything except ' ' and '\n')
         c = getchar();///reading next character
     }
 

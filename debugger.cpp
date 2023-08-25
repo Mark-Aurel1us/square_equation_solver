@@ -18,12 +18,13 @@ void help(){
 
     @param err - variable where error code is to be stored
  */
-void debug(char err){
+void debug(char err){//print_errors_desc
     switch(err){
         case WITHOUT_ERRORS:
             break;
         case ERROR_INVALID_INPUT:
             printf(COLOR_RED "Error 1: Invalid Input\n" COLOR_NONE);
+            OUTERR("Invalid Input")
             break;
         case ERROR_MATHEMATICAL:
             printf(COLOR_RED "Error 2: Mathematical error (while trying to calculate answer an error has occured)" COLOR_NONE);

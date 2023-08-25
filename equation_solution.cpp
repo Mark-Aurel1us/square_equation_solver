@@ -52,9 +52,9 @@ int linear_equation_solution(double b, double c, double* x1, char*err){
 
     returns number of roots of square equation, writes their values in x1 and x2 (if these roots exist, of course)
 
-    @param a - first quofficient of square equation a*x^2+b*x+c=0
-    @param b - second quofficient of square equation
-    @param c - third quofficient of square equation///preventing from wrong calculation/overflow/etc (i dont know)
+    @param a - first quotient of square equation a*x^2+b*x+c=0
+    @param b - second quotient of square equation
+    @param c - third quotient of square equation///preventing from wrong calculation/overflow/etc (i dont know)
     @param x1 - first root of the equation (may contain nan if not exists or infinite roots)
     @param x2 - second root of the equation (may contain nan if not exists or infinite roots)
     @param err - variable where error code is to be stored
