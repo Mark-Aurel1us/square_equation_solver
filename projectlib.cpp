@@ -47,23 +47,25 @@ void output_equation(double a, double b, double c){
             }
             printf("x");
         }
+
         if(isZero(a) && isZero(b)){
             c_sign = sign_no_prev(c);
         }
-
 
         if((isZero(a) && isZero(b)) || !isZero(c)){
             printf("%c", c_sign);
             printf("%lg", fabs(c));
         }
+
         printf("=0");
 }
 
-char sign_with_prev(int a){
+char sign_with_prev(double a){
+    if(isZero(a)){return '+';}
     return (a > 0) ? '+' : '-';
 }
-
-char sign_no_prev(int a){
+char sign_no_prev(double a){
+    if(isZero(a)){return '\0';}
     return (a > 0) ? '\0' : '-';
 }
 

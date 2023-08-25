@@ -6,7 +6,7 @@
 
 void help();
 void debug(char err);
-void buffer_eraser();
+
 
 
 #endif // DEBUGGER_H_INCLUDED

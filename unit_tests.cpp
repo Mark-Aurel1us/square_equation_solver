@@ -8,7 +8,7 @@ void test_mode(){
     bool all_correct = true;
 
     struct test_case tests[] = { // array of test cases
-           //a                    b                       c                      n                     x1                    x2
+           //a        b           c           n           x1             x2
         {   1,        2,          1,          1,          -1,            NAN     //test 1
         },
         {
@@ -39,13 +39,7 @@ void test_mode(){
 
 
 bool unit_test(const test_case* test, size_t i){
-/*        double a = (*test).a,
-               b = (*test).b,
-               c = (*test).c,
-     x1_expected = (*test).x1_expected,
-     x2_expected = (*test).x2_expected;
-  int n_expected = (*test).n_expected;
-*/
+
     char err = WITHOUT_ERRORS;
     double x1 = NAN,
            x2 = NAN;
