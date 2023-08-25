@@ -1,8 +1,13 @@
 #include "debugger.h"
 
 
+/*!
+    help function
 
-void help(){    //outputs documentation
+    outputs documentation for mentally ill users
+
+ */
+void help(){
     printf( "Sharipov Akram`s Square Equation Solver\n"
             "(C) 2023, Akram Sharipov, Republic of Bashkortostan\n"
             "Usage:\n"
@@ -15,13 +20,17 @@ void help(){    //outputs documentation
             "The program will output number of roots, their values, or output error if you type wrong\n"
             "\n"
             "\n"
-    );
+    );///outputs documentation
 }
 
 
 
 
+/*!
+    debug function
 
+    @param err - variable where error code is to be stored
+ */
 void debug(char err){
     switch(err){
         case WITHOUT_ERRORS:

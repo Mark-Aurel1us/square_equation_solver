@@ -10,6 +10,7 @@
 
 const int CORRECT_SCAN_STATUS = 3;
 const double ESTIMATION = 1e-6;
+
 const int TRIES_TO_TYPE = 7;
 const int LAST_TRY = 1;
 
@@ -18,7 +19,7 @@ const int LAST_TRY = 1;
 WITHOUT_ERRORS = '0', ///zero code if no errors
 ERROR_INVALID_INPUT = '1', ///one code for invalid input
 ERROR_MATHEMATICAL = '2', ///two code for mathematical errors
-ERROR_UNCAUGHT = '3' ///three code for preventing output (used when input is invalid)
+ERROR_UNCAUGHT = '3' ///three code for preventing output (also used when input is invalid but for non-outputting purpose)
 };
  enum RootsNumber {
     TWO_ROOTS = 2,  ///two roots

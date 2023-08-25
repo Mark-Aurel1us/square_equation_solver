@@ -3,8 +3,13 @@
 #include "debugger.h" //error catcher
 #include "unit_tests.h" //encommenting this line avoids including test mode files
 
-//#define TEST_MODE //to disable test code, encomment this line
+#define TEST_MODE //to disable test code, encomment this line
 
+/*!
+    main function
+
+    where code executes
+ */
 int main(){
 //printf("%d",)
 #ifdef TEST_MODE

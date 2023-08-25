@@ -26,17 +26,12 @@ void test_mode(){
         all_correct &= unit_test(tests + i, i + 1);// &tests[i]
     }
 
+    all_correct &= file_unit_tests();
+
     if(all_correct){
-        printf(COLOR_GREEN
-               "All tests passed successfully!\n"
-               COLOR_NONE
-               );
+        printf(COLOR_GREEN "All tests passed successfully!\n" COLOR_NONE);
     }
 }
-
-
-
-
 
 
 
@@ -49,7 +44,7 @@ bool unit_test(const test_case* test, size_t i){
 
     int n = square_equation_solution((*test).a, (*test).b, (*test).c, &x1, &x2, &err);
 
-    if(n == (*test).n_expected && err == WITHOUT_ERRORS){
+    if(n == (*test).n_expected && err == WITHOUT_ERRORS){ // (*test).a == test->a
             if(n == 0 || n == INF_ROOTS){
                 return true;
             }
@@ -64,10 +59,18 @@ bool unit_test(const test_case* test, size_t i){
                 return true;
             }
     }
+    error_test_case(test, x1, x2, n, i);
+    return false;
+}
 
 
-    printf( COLOR_RED
-            "Error in test case %d.\n"
+
+
+
+
+void error_test_case(const test_case* test, double x1, double x2, int n, int i){
+    printf(COLOR_RED);
+    printf( "Error in test case %d.\n"
             "   Tested Equation: ",(int)i);
     output_equation((*test).a, (*test).b, (*test).c);
     printf( "\n"
@@ -75,26 +78,39 @@ bool unit_test(const test_case* test, size_t i){
     print_not_nan(test->x1_expected);
     print_not_nan(test->x2_expected);
     print_number_of_roots_dbg( test->n_expected);
+
+    // print_solution
+    //   print number of roots
+    //
+    //   Solution is any real number
+
+    //   Solution is one root: x = 1.5
+
+    //   Solution has no roots
+
+    printf( "   Got results:\n");
     print_not_nan(x1);
     print_not_nan(x2);
     print_number_of_roots_dbg( n);
     printf(COLOR_NONE);
-    return false;
 }
 
 
 
 
 void print_number_of_roots_dbg(int roots_n){
-printf( "      Number of roots:");
+    printf( "      ");
     switch (roots_n){
         case(INF_ROOTS):
-            printf("infinite");
+            printf("All real numbers");
+            break;
+        case(NO_ROOTS):
+            printf("No roots");
             break;
         default:
-            printf("%d",roots_n);
+            printf("Number of roots:%d",roots_n);
     }
-printf("\n");
+    printf("\n");
 }
 
 
@@ -103,5 +119,35 @@ void print_not_nan(double x){
         printf( "       x=%lg\n", x);
     }
 }
+
+
+
+
+
+
+bool file_unit_tests(){
+    bool ok = true;
+    struct test_case file_test;
+    int stat = 6;
+    int i = 0;
+    FILE *file_ptr = fopen("tests.txt", "r");
+    if(file_ptr == nullptr){
+    printf(COLOR_RED "File with tests not found. Create texts.txt file with valid unit tests in this directory" COLOR_RED "\n");
+        return true;
+    }
+    printf("Tests from file are running now.\n");
+
+    while(stat == 6){
+        stat = fscanf(file_ptr, "%lg %lg %lg %d %lg %lg", &(file_test.a), &(file_test.b), &(file_test.c), &(file_test.n_expected), &(file_test.x1_expected), &(file_test.x2_expected));
+        if(stat == 6){
+            ok &= unit_test(&file_test, i);
+        }
+        i++;
+    }
+    if(ok){printf("%d tests from file ran successfully\n", i - 1);}
+    fclose(file_ptr);
+    return ok;
+}
+
 
 
