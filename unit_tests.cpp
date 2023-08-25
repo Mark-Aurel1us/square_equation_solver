@@ -27,7 +27,10 @@ void test_mode(){
     }
 
     if(all_correct){
-        printf("All tests passed successfully!");
+        printf(COLOR_GREEN
+               "All tests passed successfully!\n"
+               COLOR_NONE
+               );
     }
 }
 
@@ -63,7 +66,8 @@ bool unit_test(const test_case* test, size_t i){
     }
 
 
-    printf( "Error in test case %d.\n"
+    printf( COLOR_RED
+            "Error in test case %d.\n"
             "   Tested Equation: ",(int)i);
     output_equation((*test).a, (*test).b, (*test).c);
     printf( "\n"
@@ -74,6 +78,7 @@ bool unit_test(const test_case* test, size_t i){
     print_not_nan(x1);
     print_not_nan(x2);
     print_number_of_roots_dbg( n);
+    printf(COLOR_NONE);
     return false;
 }
 

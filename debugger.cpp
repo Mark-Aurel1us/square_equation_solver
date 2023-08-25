@@ -27,15 +27,15 @@ void debug(char err){
         case WITHOUT_ERRORS:
             break;
         case ERROR_INVALID_INPUT:
-            printf("Error 1: Invalid Input\n");
+            printf(COLOR_RED "Error 1: Invalid Input\n" COLOR_NONE);
             break;
         case ERROR_MATHEMATICAL:
-            printf("Error 2: Mathematical error (while trying to calculate answer an error has occured)");
+            printf(COLOR_RED "Error 2: Mathematical error (while trying to calculate answer an error has occured)" COLOR_NONE);
             break;
         case ERROR_UNCAUGHT:
             break;
         default:
-            printf("Unknown Error %d\n", err);
+            printf(COLOR_RED "Unknown Error %d\n" COLOR_NONE, err);
     }
 }
 

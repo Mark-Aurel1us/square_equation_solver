@@ -40,7 +40,7 @@ void user_input_reading(double* a, double* b, double* c, char* err){ // remove n
     assert(err != nullptr);
 
     if(i < LAST_TRY){
-        printf("Shut down, stupid user! You are too silly even to type three numbers correctly!\n");
+        printf(COLOR_RED "Shut down, stupid user! You are too silly even to type three numbers correctly!\n" COLOR_NONE);
         *err = ERROR_UNCAUGHT;
         return;
     }
