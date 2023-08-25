@@ -1,9 +1,9 @@
 #include "equation_solution.h"
 #include "input_output.h"
-#include "debugger.h" //error catcher
+#include "debugger.h"   //error catcher
 #include "unit_tests.h" //encommenting this line avoids including test mode files
 
-#define TEST_MODE //to disable test code, encomment this line
+//#define TEST_MODE //to disable test code, encomment this line
 
 /*!
     main function
@@ -11,7 +11,7 @@
     where code executes
  */
 int main(){
-//printf("%d",)
+
 #ifdef TEST_MODE
     test_mode(); //testing
 #else
@@ -25,5 +25,6 @@ int main(){
 
     output_answers(a, b, c, number_of_roots, x1, x2, &err); ///printing answer if no errors
     debug(err); ///printing errors if any (except errors already printed, they just prevent output)
+
 #endif // TEST_MODE
 }

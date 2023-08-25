@@ -5,22 +5,26 @@
     format_output function
 
     just prevents from outputting "-0"
+    returns 0 if number is near 0
 
-    @param a - first quofficient of square equation a*x^2+b*x+c=0
-    @param b - second quofficient of square equation
-    @param c - third quofficient of square equation
+    @param x - number being formatted
  */
 void format_output(double* x){
     assert(x != nullptr);
     *x = isZero(*x) ? 0 : *x;
 }
 
+
+
+
+
 /*!
     equal_double function
 
     returns true if doubles are approximately equal
-    else returns false)))))))
+    else returns false
     NANs are equal !important
+
 
     @param a - first quofficient of square equation a*x^2+b*x+c=0
     @param b - second quofficient of square equation
@@ -32,7 +36,15 @@ bool equal_double(double first_double, double second_double){  ///checks whether
         return true;///NAN==NAN there
     }
 
-    return isZero(first_double - second_double); ///if difference between numbers is near 0, they are equal
+    if(isZero(first_double - second_double)){ ///if difference between numbers is near 0, they are equal
+        return true;
+    }
+
+    if(first_double * second_double > 0 && fabs(log(fabs(first_double))) - log(fabs(second_double)) < EXPONENTIAL_ESTIMATION){///
+        ///exponential difference for big scientific numbers of equal sign, e.g. 1,000000001e32 and 9.99999999e31 (idk)
+         return true; ///if exponential difference is small, numbers must have been equal,
+    }
+    return false;    ///otherwise,
     //todo: write for exp form: fabs (b1 - b2) < ESTIMATION * (fabs(b1) + fabs(b2))
 }
 
@@ -41,10 +53,9 @@ bool equal_double(double first_double, double second_double){  ///checks whether
 /*!
     isZero function
     if number is very little, its module is less than epsilon (ESTIMATION), returns true
-    else returns false ((((((((
+    else returns false
 
- */
-//change b1 b2 b3 names //done!
+ */     //change b1 b2 b3 names //done!
 bool isZero(double number){ //checks whether number is equal to 0
     return fabs(number) < ESTIMATION;///returning comparison
 }

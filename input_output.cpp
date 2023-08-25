@@ -15,12 +15,15 @@
 void output_answers(double a, double b, double c, int number, double x1, double x2, char* err){
     format_output(&x1);/// avoid -0 output
     format_output(&x2);/// avoid -0 output
+
     if(*err != WITHOUT_ERRORS){
         return;///preventing from outputting invalid results
     }
+
     printf("Equation ");
-    output_equation(a,b,c);///outputting equation canonically
+    output_equation(a, b, c);///outputting equation canonically
     printf(" has ");
+
     switch(number){///depending on how much roots the equation has, prints amount of roots
     case NO_ROOTS:///if equation has no roots
         printf("no roots");
@@ -37,6 +40,7 @@ void output_answers(double a, double b, double c, int number, double x1, double 
     default:
         *err = ERROR_UNCAUGHT;///error code to be proceeded by debug function
     }
+
     printf("\n\n");///new line
 }
 
@@ -52,33 +56,35 @@ void output_answers(double a, double b, double c, int number, double x1, double 
 
 void user_input_reading(double* a, double* b, double* c, char* err){ // rewrite with cycle
 
-    static int i = TRIES_TO_TYPE;///backward counter to prevent from long recursion and to output help docs only the first time user typed wrong
+    for(int i=0;i<TRIES_TO_TYPE;i++){///backward counter to prevent from long recursion and to output help docs only the first time user typed wrong
 
-    assert(a != nullptr);
-    assert(b != nullptr);
-    assert(c != nullptr);
-    assert(err != nullptr);
+        assert(a != nullptr);
+        assert(b != nullptr);
+        assert(c != nullptr);
+        assert(err != nullptr);
 
-    if(i < LAST_TRY){///if too many bad tries
-        printf(COLOR_RED "Shut down, stupid user! You are too silly even to type three numbers correctly!\n" COLOR_NONE);///warning user
-        *err = ERROR_UNCAUGHT;///preventing wrong output with error code
-        return;
-    }
-
-    printf("Input 3 numbers\n");///ask user to type
-    int scan_status = scanf("%lg %lg %lg", a, b, c);/// scanning numbers, counting how much scanned successfully (must be CORRECT_SCAN_STATUS=3)
-
-
-
-
-    if (buffer_eraser() || scan_status != CORRECT_SCAN_STATUS){ ///if garbage found or scanned less than 3 variables
-        debug(ERROR_INVALID_INPUT);///throwing exception via dbg function if something wrong with input
-        if(i == TRIES_TO_TYPE){///the first time user typed wrong
-            help();///output help documentation
-            printf("Please, read documentation and try again.\n");///ask user to retry
+        if(i == TRIES_TO_TYPE - 1){///if too many bad tries
+            printf(COLOR_RED "Shut down, stupid user! You are too silly even to type three numbers correctly!\n" COLOR_NONE);///warning user
+            *err = ERROR_UNCAUGHT;///preventing wrong output with error code
         }
-        i--;///decreasing counter before recursively calling function to avoid infinite cycle and
-        user_input_reading(a, b, c, err);///recursively calling this function in order to give user next try
+
+        printf("Input 3 numbers\n");///ask user to type
+        int scan_status = scanf("%lg %lg %lg", a, b, c);/// scanning numbers, counting how much scanned successfully (must be CORRECT_SCAN_STATUS=3)
+
+        if (buffer_eraser() || scan_status != CORRECT_SCAN_STATUS){ ///if garbage found or scanned less than 3 variables
+            debug(ERROR_INVALID_INPUT);///throwing exception via dbg function if something wrong with input
+
+            if(i == 0){///the first time user typed wrong
+                help();///output help documentation
+                printf("Please, read documentation and try again.\n");///ask user to retry
+            }
+
+            ///decreasing counter before recursively calling function to avoid infinite cycle and
+            user_input_reading(a, b, c, err);///recursively calling this function in order to give user next try
+        }else{
+            return;
+        }
+
     }
 }
 
@@ -94,10 +100,12 @@ void user_input_reading(double* a, double* b, double* c, char* err){ // rewrite 
 bool buffer_eraser(){
     bool ret = false; //!<this variable checks whether string has garbage or not
     int c = getchar();///reading next character
+
     while(c != '\n'){///until the end of line checks
         if(c != ' '){ret = true;}///if garbage found (garbage is everything except ' ' and '\n')
         c = getchar();///reading next character
     }
+
     return ret;///returning logic value
 }
 

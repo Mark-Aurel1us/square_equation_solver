@@ -9,9 +9,12 @@
     @param b - second quofficient of square equation
     @param c - third quofficient of square equation
  */
+
 double discriminant(double a, double b, double c){
     return b * b - 4 * a * c;///returning double value of the discriminant
 }
+
+
 
 /*!
     linear_equation_solution function
@@ -42,6 +45,8 @@ int linear_equation_solution(double b, double c, double* x1, char*err){
 }
 
 
+
+
 /*!
     square_equation_solution function
 
@@ -61,9 +66,9 @@ int square_equation_solution(double a, double b, double c, double* x1, double* x
     }
 
     assert(x1 != nullptr);///null-pointer-exception avoid
-    assert(x2 != nullptr);///null-pointer-exception avoid
-    assert(err != nullptr);///null-pointer-exception avoid
-    assert(x1 != x2);///null-pointer-exception avoid
+    assert(x2 != nullptr);
+    assert(err != nullptr);
+    assert(x1 != x2);
 
     if (isZero(a)) {
         return linear_equation_solution(b, c, x1, err);///if equation is linear, use another function to calculate answer

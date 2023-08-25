@@ -70,28 +70,19 @@ bool unit_test(const test_case* test, size_t i){
 
 void error_test_case(const test_case* test, double x1, double x2, int n, int i){
     printf(COLOR_RED);
-    printf( "Error in test case %d.\n"
+    printf("Error in test case %d.\n"
             "   Tested Equation: ",(int)i);
     output_equation((*test).a, (*test).b, (*test).c);
-    printf( "\n"
+    printf("\n"
             "   Expected results:\n");
+    print_number_of_roots_dbg( test->n_expected);
     print_not_nan(test->x1_expected);
     print_not_nan(test->x2_expected);
-    print_number_of_roots_dbg( test->n_expected);
 
-    // print_solution
-    //   print number of roots
-    //
-    //   Solution is any real number
-
-    //   Solution is one root: x = 1.5
-
-    //   Solution has no roots
-
-    printf( "   Got results:\n");
+    printf("   Got results:\n");
+    print_number_of_roots_dbg( n);
     print_not_nan(x1);
     print_not_nan(x2);
-    print_number_of_roots_dbg( n);
     printf(COLOR_NONE);
 }
 
@@ -99,7 +90,7 @@ void error_test_case(const test_case* test, double x1, double x2, int n, int i){
 
 
 void print_number_of_roots_dbg(int roots_n){
-    printf( "      ");
+    printf("     ");
     switch (roots_n){
         case(INF_ROOTS):
             printf("All real numbers");
@@ -107,8 +98,13 @@ void print_number_of_roots_dbg(int roots_n){
         case(NO_ROOTS):
             printf("No roots");
             break;
-        default:
-            printf("Number of roots:%d",roots_n);
+        case(ONE_ROOT):
+            printf("One root:");
+            break;
+        case(TWO_ROOTS):
+            printf("Two roots:");
+            break;
+        default:;
     }
     printf("\n");
 }
@@ -116,7 +112,7 @@ void print_number_of_roots_dbg(int roots_n){
 
 void print_not_nan(double x){
     if(!isnan(x)){
-        printf( "       x=%lg\n", x);
+        printf("       x=%lg\n", x);
     }
 }
 
@@ -140,7 +136,7 @@ bool file_unit_tests(){
     while(stat == 6){
         stat = fscanf(file_ptr, "%lg %lg %lg %d %lg %lg", &(file_test.a), &(file_test.b), &(file_test.c), &(file_test.n_expected), &(file_test.x1_expected), &(file_test.x2_expected));
         if(stat == 6){
-            ok &= unit_test(&file_test, i);
+            ok &= unit_test(&file_test, i + 1);
         }
         i++;
     }
