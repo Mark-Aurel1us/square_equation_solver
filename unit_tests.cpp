@@ -1,7 +1,9 @@
 #include "unit_tests.h"
 
 
-
+/*
+ testing function. Helps to test the code.
+*/
 void test_mode(){
     printf("TEST MODE ACTIVATED\n");
 
@@ -35,7 +37,11 @@ void test_mode(){
 
 
 
-
+/*
+ Single unit test function. Tests once, outputs wrong answers if any. Returns true if everything is correct, else returns false
+ @param test - single test data
+ @param i - test id. Required to output which test went wrong.
+*/
 bool unit_test(const test_case* test, size_t i){
 
     char err = WITHOUT_ERRORS;
@@ -67,7 +73,14 @@ bool unit_test(const test_case* test, size_t i){
 
 
 
-
+/*
+ function which returns information about wrong answer of one unit test
+ @param test - single test data
+ @param i - test id. Required to output which test went wrong.
+ @param x1 - got answer
+ @param x2 - got answer
+ @param n - got roots count
+*/
 void error_test_case(const test_case* test, double x1, double x2, int n, int i){
     printf(COLOR_RED);
     printf("Error in test case %d.\n"
@@ -88,7 +101,10 @@ void error_test_case(const test_case* test, double x1, double x2, int n, int i){
 
 
 
-
+/*
+ Function that outputs number of roots
+ @param n - number of roots
+*/
 void print_number_of_roots_dbg(int roots_n){
     printf("     ");
     switch (roots_n){
@@ -109,6 +125,9 @@ void print_number_of_roots_dbg(int roots_n){
     printf("\n");
 }
 
+/*
+ Function that prints root if it is not NAN
+*/
 
 void print_not_nan(double x){
     if(!isnan(x)){
@@ -117,9 +136,9 @@ void print_not_nan(double x){
 }
 
 
-
-
-//errors to stderr
+/*
+ Function that run unit tests from file tests.txt, if it is found. Returns true if passed all tests
+*/
 
 bool file_unit_tests(){
     bool ok = true;
@@ -128,7 +147,7 @@ bool file_unit_tests(){
     int i = 0;
     FILE *file_ptr = fopen("tests.txt", "r");
     if(file_ptr == nullptr){
-        fprintf(stderr, COLOR_RED "File with tests not found. Create texts.txt file with valid unit tests in this directory" COLOR_RED "\n");
+        printf(COLOR_RED "File with tests not found. Create texts.txt file with valid unit tests in this directory" COLOR_RED "\n");
         OUTERR("File not found")
         return true;
     }

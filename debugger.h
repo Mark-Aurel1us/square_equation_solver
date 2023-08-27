@@ -5,7 +5,7 @@
 
 
 void help();
-void debug(char err);
+void print_errors_description(char err);
 
 const char HELP_PRINT[] = "Sharipov Akram`s Square Equation Solver\n"
             "(C) 2023, Akram Sharipov, Republic of Bashkortostan\n"

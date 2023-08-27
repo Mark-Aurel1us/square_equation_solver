@@ -8,9 +8,8 @@
 
  */
 void help(){
-    printf(HELP_PRINT);///outputs documentation
+    printf(HELP_PRINT);//outputs documentation
 }
-
 
 /*!
     debug function
@@ -18,7 +17,7 @@ void help(){
 
     @param err - variable where error code is to be stored
  */
-void debug(char err){//print_errors_desc
+void print_errors_description(char err){//print_errors_description
     switch(err){
         case WITHOUT_ERRORS:
             break;
@@ -28,11 +27,13 @@ void debug(char err){//print_errors_desc
             break;
         case ERROR_MATHEMATICAL:
             printf(COLOR_RED "Error 2: Mathematical error (while trying to calculate answer an error has occured)" COLOR_NONE);
+            OUTERR("Maths Error")
             break;
         case ERROR_UNCAUGHT:
             break;
         default:
             printf(COLOR_RED "Unknown Error %d\n" COLOR_NONE, err);
+            OUTERR("Unknown Error")
     }
 }
 

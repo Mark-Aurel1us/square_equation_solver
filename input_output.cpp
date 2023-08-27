@@ -13,37 +13,36 @@
     @param err - variable where error code is to be stored
  */
 void output_answers(double a, double b, double c, int number, double x1, double x2, char* err){
-    format_output(&x1);/// avoid -0 output
-    format_output(&x2);/// avoid -0 output
+    format_output(&x1);// avoid -0 output
+    format_output(&x2);// avoid -0 output
 
     if(*err != WITHOUT_ERRORS){
-        return;///preventing from outputting invalid results
+        return;//preventing from outputting invalid results
     }
 
     printf("Equation ");
-    output_equation(a, b, c);///outputting equation canonically
+    output_equation(a, b, c);//outputting equation canonically
     printf(" has ");
 
-    switch(number){///depending on how much roots the equation has, prints amount of roots
-    case NO_ROOTS:///if equation has no roots
+    switch(number){//depending on how much roots the equation has, prints amount of roots
+    case NO_ROOTS://if equation has no roots
         printf("no roots");
         break;
-    case ONE_ROOT:///if equation has one root
+    case ONE_ROOT://if equation has one root
         printf("1 root: %lg", x1);
         break;
-    case TWO_ROOTS:///if equation has two roots
+    case TWO_ROOTS://if equation has two roots
         printf("2 roots: %lg and %lg", x1, x2);
         break;
-    case INF_ROOTS:///if equation has infinite roots
+    case INF_ROOTS://if equation has infinite roots
         printf("infinite amount of roots");
         break;
     default:
-        *err = ERROR_UNCAUGHT;///error code to be proceeded by debug function
+        *err = ERROR_UNCAUGHT;//error code to be proceeded by debug function
     }
 
-    printf("\n\n");///new line
+    printf("\n\n");//new line
 }
-
 
 /*!
     user_input_reading function
@@ -56,56 +55,52 @@ void output_answers(double a, double b, double c, int number, double x1, double 
 
 char user_input_reading(double* a, double* b, double* c){ // return err
 
-    for(int i = 0; i < TRIES_TO_TYPE; i++){///backward counter to prevent from long recursion and to output help docs only the first time user typed wrong
+    for(int i = 0; i < TRIES_TO_TYPE; i++){//backward counter to prevent from long recursion and to output help docs only the first time user typed wrong
 
         assert(a != nullptr);
         assert(b != nullptr);
         assert(c != nullptr);
 
-        printf("Input 3 numbers\n");///ask user to type
-        int scan_status = scanf("%lg %lg %lg", a, b, c);/// scanning numbers, counting how much scanned successfully (must be CORRECT_SCAN_STATUS=3)
+        printf("Input 3 numbers\n");//ask user to type
+        int scan_status = scanf("%lg %lg %lg", a, b, c);// scanning numbers, counting how much scanned successfully (must be CORRECT_SCAN_STATUS=3)
 
-        if (buffer_eraser() || scan_status != CORRECT_SCAN_STATUS){ ///if garbage found or scanned less than 3 variables
-            debug(ERROR_INVALID_INPUT);///throwing exception via dbg function if something wrong with input
+        if (buffer_eraser() || scan_status != CORRECT_SCAN_STATUS){ //if garbage found or scanned less than 3 variables
+            print_errors_description(ERROR_INVALID_INPUT);//throwing exception via dbg function if something wrong with input
 
-            if(i == 0){///the first time user typed wrong
-                help();///output help documentation
-                printf("Please, read documentation and try again.\n");///ask user to retry
+            if(i == 0){//the first time user typed wrong
+                help();//output help documentation
+                printf("Please, read documentation and try again.\n");//ask user to retry
             }
 
-            ///decreasing counter before recursively calling function to avoid infinite cycle and
- //           user_input_reading(a, b, c);///recursively calling this function in order to give user next try
         }else{
             return WITHOUT_ERRORS;
         }
 
     }
 
-    printf(COLOR_RED "Shut down, stupid user! You are too silly even to type three numbers correctly!\n" COLOR_NONE);///warning user
-    return ERROR_UNCAUGHT;///preventing wrong output with error code
+    printf(COLOR_RED "Shut down, stupid user! You are too silly even to type three numbers correctly!\n" COLOR_NONE);//warning user
+    return ERROR_UNCAUGHT;//preventing wrong output with error code
 
 }
-
 
 /*!
     buffer_eraser function
     erases buffer until the end of the line
     returns true if buffer has garbage (not ' ' or '\n')
     returns false if everything is ok
+    i use linux btv
 
 
  */
 bool buffer_eraser(){
-    bool ret = false; ///this variable checks whether string has garbage or not
-    int c = getchar();///reading next character
+    bool ret = false; //this variable checks whether string has garbage or not
+    int c = getchar();//reading next characte
 
-    //isspace(c)
-
-    while(c != '\n'){///until the end of line checks
-        if(!isspace(c)){ret = true;}///if garbage found (garbage is everything except ' ' and '\n')
-        c = getchar();///reading next character
+    while(c != '\n'){//until the end of line checks
+        if(!isspace(c)){ret = true;}//if garbage found (garbage is everything except ' ' and '\n')
+        c = getchar();//reading next character
     }
 
-    return ret;///returning logic value
+    return ret;//returning logic value
 }
 

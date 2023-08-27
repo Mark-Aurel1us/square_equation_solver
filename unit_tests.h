@@ -13,12 +13,19 @@ void print_number_of_roots_dbg(int roots_n);
 void print_not_nan(double x);
 void error_test_case(const test_case* test, double x1, double x2, int n, int i);
 //structures
+/**
+
+ test case structure
+ where one unit test is to be stored
+
+*/
 struct test_case {
-    double a;
-    double b;
-    double c;
-    int n_expected;
-    double x1_expected;
+    ///first quotient of square equation
+    double a; ///second quotient of square equation
+    double b; ///third quotient of square equation
+    double c; ///expected number of roots
+    int n_expected; ///expected root (no roots or infinite roots)
+    double x1_expected; ///expected root (NAN if 1 root, no roots or infinite roots)
     double x2_expected;
 };
 
