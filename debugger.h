@@ -3,8 +3,20 @@
 
 #include "projectlib.h"
 
+/*!
+    help function
 
+    outputs documentation for mentally ill users
+
+ */
 void help();
+
+/*!
+    debug function
+    outputs errors depending on error code
+
+    @param err - variable where error code is to be stored
+ */
 void print_errors_description(char err);
 
 const char HELP_PRINT[] = "Sharipov Akram`s Square Equation Solver\n"

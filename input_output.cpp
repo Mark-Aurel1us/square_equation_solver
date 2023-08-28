@@ -1,18 +1,7 @@
 #include "input_output.h"
 
 
-/*!
-    output_answers function
-
-    @param a - first quofficient of square equation a*x^2+b*x+c=0
-    @param b - second quofficient of square equation
-    @param c - third quofficient of square equation
-    @param n - number of roots of the equation
-    @param x1 - first root of the equation (may contain nan if not exists or infinite roots)
-    @param x2 - second root of the equation (may contain nan if not exists or infinite roots)
-    @param err - variable where error code is to be stored
- */
-void output_answers(double a, double b, double c, int number, double x1, double x2, char* err){
+void output_answers(const double a, const double b, const double c, const int number, double x1, double x2, char* err){
     format_output(&x1);// avoid -0 output
     format_output(&x2);// avoid -0 output
 
@@ -38,22 +27,15 @@ void output_answers(double a, double b, double c, int number, double x1, double 
         printf("infinite amount of roots");
         break;
     default:
-        *err = ERROR_UNCAUGHT;//error code to be proceeded by debug function
+        *err = ERROR_ROOTS_NUMBER;//error code to be proceeded by debug function
     }
 
     printf("\n\n");//new line
 }
 
-/*!
-    user_input_reading function
 
-    @param a - first quofficient of square equation a*x^2+b*x+c=0
-    @param b - second quofficient of square equation
-    @param c - third quofficient of square equation
-    @param err - variable where error code is to be stored
- */
 
-char user_input_reading(double* a, double* b, double* c){ // return err
+void user_input_reading(double* a, double* b, double* c, char* err){
 
     for(int i = 0; i < TRIES_TO_TYPE; i++){//backward counter to prevent from long recursion and to output help docs only the first time user typed wrong
 
@@ -73,31 +55,26 @@ char user_input_reading(double* a, double* b, double* c){ // return err
             }
 
         }else{
-            return WITHOUT_ERRORS;
+            *err = WITHOUT_ERRORS;
+            return;
         }
 
     }
 
-    printf(COLOR_RED "Shut down, stupid user! You are too silly even to type three numbers correctly!\n" COLOR_NONE);//warning user
-    return ERROR_UNCAUGHT;//preventing wrong output with error code
+    printf(COLOR_RED "Shut down, stupid user! You are too silly even to type three numbers correctly!\n" COLOR_RESET);//warning user
+    *err = ERROR_UNCAUGHT;//preventing wrong output with error code
 
 }
 
-/*!
-    buffer_eraser function
-    erases buffer until the end of the line
-    returns true if buffer has garbage (not ' ' or '\n')
-    returns false if everything is ok
-    i use linux btv
 
-
- */
 bool buffer_eraser(){
     bool ret = false; //this variable checks whether string has garbage or not
-    int c = getchar();//reading next characte
+    int c = getchar();//reading next character
 
-    while(c != '\n'){//until the end of line checks
-        if(!isspace(c)){ret = true;}//if garbage found (garbage is everything except ' ' and '\n')
+    while(c != '\n'&& c != EOF){//until the end of line checks
+        if(!isspace(c)){
+            ret = true;
+        }
         c = getchar();//reading next character
     }
 
