@@ -31,13 +31,8 @@ then
 fi
 
 
-if [[ "unit_tests.cpp" -nt "unit_tests.o" ]]
-then
-	g++ -c unit_tests.cpp
-fi
 
-
-g++ main.o debugger.o equation_solution.o input_output.o projectlib.o unit_tests.o -o program
+g++ main.o debugger.o equation_solution.o input_output.o projectlib.o -o program
 
 
 
