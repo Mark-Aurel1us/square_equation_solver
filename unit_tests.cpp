@@ -17,9 +17,6 @@ void test_mode(){
             0,        0,          0,          INF_ROOTS,   NAN,          NAN     //test 2
         },
         {
-            0,        0,          1,          INF_ROOTS,   NAN,          NAN     //test 2
-        },
-        {
             1,        573,      -574,         2,          -574,          1       //test 3
         },
         {
