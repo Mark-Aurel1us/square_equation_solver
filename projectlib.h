@@ -7,6 +7,7 @@
 #include <assert.h>
 #include <ctype.h>
 #include <limits.h>
+#include <string.h>
 
 //constants
 
@@ -67,7 +68,7 @@ bool equal_double(double first_double, double second_double);
     else returns false
 
  */
-bool isZero(double number);
+bool isZero(double number); // TODO reanme is_zero()
 
 /*!
     output_equation function
@@ -89,6 +90,7 @@ void output_equation(double a, double b, double c);
     @param x - number being formatted
  */
 void format_output(double* x);
+
 /*!
     sign_no_prev function
     if there is no another summand before this summand, we mustn't write +, so,
@@ -98,6 +100,7 @@ void format_output(double* x);
 
  */
 char sign_no_prev(double a);
+
 /*!
     sign_with_prev function
     if there is another summand before this summand, we have to write +, so,
@@ -130,8 +133,4 @@ void program();
 */
 void usage();
 
-/*!
- Compares two strings
- */
- bool mystrcmp(char* str1, char* str2);
 #endif // PROJECTLIB_H_INCLUDED

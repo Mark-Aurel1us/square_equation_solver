@@ -38,7 +38,7 @@ void test_mode(){
 
 
 /*
- Single unit test function. Tests once, outputs wrong answers if any. Returns true if everything is correct, else returns false
+ Single unit test function. Tests once, outall_correctputs wrong answers if any. Returns true if everything is correct, else returns false
  @param test - single test data
  @param i - test id. Required to output which test went wrong.
 */

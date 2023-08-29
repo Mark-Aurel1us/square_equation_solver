@@ -4,30 +4,35 @@
 if [[ "main.cpp" -nt "main.o" ]]
 then
 	g++ -c main.cpp
+	echo main.o rebuilt
 fi
 
 
 if [[ "debugger.cpp" -nt "debugger.o" ]]
 then
 	g++ -c debugger.cpp
+	echo debugger.o rebuilt
 fi
 
 
 if [[ "equation_solution.cpp" -nt "equation_solution.o" ]]
 then
 	g++ -c equation_solution.cpp
+	echo equation_solution.o rebuilt
 fi
 
 
 if [[ "input_output.cpp" -nt "input_output.o" ]]
 then
 	g++ -c input_output.cpp
+	echo input_output.o rebuilt
 fi
 
 
 if [[ "projectlib.cpp" -nt "projectlib.o" ]]
 then
 	g++ -c projectlib.cpp
+	echo projectlib.o rebuilt
 fi
 
 

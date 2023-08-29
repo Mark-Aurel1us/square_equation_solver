@@ -21,7 +21,6 @@ var projectlib_8h =
     [ "equal_double", "projectlib_8h.html#adbd00c1eb628a3cd5626959f0a446e01", null ],
     [ "format_output", "projectlib_8h.html#a046ad2c3996bdbb1dc72260298a54e2c", null ],
     [ "isZero", "projectlib_8h.html#a4d01a36d1a70e0e67b9f99fe6cc99710", null ],
-    [ "mystrcmp", "projectlib_8h.html#aeae7efa5a35b84e8c134fb27fa481b30", null ],
     [ "output_equation", "projectlib_8h.html#a2c7774c207b4f6bca96345d6488e9c33", null ],
     [ "print_not_nan", "projectlib_8h.html#af378771e3ef838ec004188d225f8dca4", null ],
     [ "print_number_of_roots", "projectlib_8h.html#a5bbdeabc0eb8cb40b098095c8abba8c3", null ],

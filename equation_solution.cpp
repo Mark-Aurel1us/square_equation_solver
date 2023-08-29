@@ -9,25 +9,25 @@ double discriminant(const double a, const double b, const double c){
 
 int linear_equation_solution(double b, double c, double* x1, char*err){
 
-    assert(x1 != nullptr);//null-pointer-exception avoid
-    assert(err != nullptr);//null-pointer-exception avoid
+    assert(x1 != nullptr);  //null-pointer-exception avoid
+    assert(err != nullptr); //null-pointer-exception avoid
 
-    if (isZero(b)){
-        if (isZero(c)){//case c==b==a==0
+    if (isZero(b)) {
+        if (isZero(c)) { //case c==b==a==0
             return INF_ROOTS;//0=0 equation has infinite roots
-        }else{//case a==b==0
+        } else { //case a==b==0
             return NO_ROOTS;//c=0 has no roots if c!=0
         }
-    }else{//case a==0
-            *x1 = -c / b;//b*x+c==0 b*x==-c x==-c/b
+    } else { //case a==0
+            *x1 = -c / b; //b*x+c==0 b*x==-c x==-c/b
         }
-        return ONE_ROOT;//x==-c/b - only one root
+        return ONE_ROOT; //x==-c/b - only one root
 }
 
 
 int square_equation_solution(double a, double b, double c, double* x1, double* x2, char* err){
-
-    if(*err != WITHOUT_ERRORS){
+     // TODO err != NULL
+    if (*err != WITHOUT_ERRORS){
         return NO_ROOTS;//if errors has occured before, don't do anything and return
     }
 

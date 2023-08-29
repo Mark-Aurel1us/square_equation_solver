@@ -9,20 +9,37 @@
     Function where code is executed
  */
 int main(int argc, char *argv[]){
-#ifdef TEST_MODE
-    test_mode(); //testing
-#else
+
     if(argc > 1){
-        if(argv[1][0]=='-'&&argv[1][1]=='h'){
-            help();
-        }else{
+        if(strlen(argv[1]) == 2 && argv[1][0]=='-') { // TODO check arg len
+            switch(argv[1][1]) {
+                case 'h':
+                    help();
+                    break;
+                case 'u':
+                    usage();
+                    break;
+                case 't':
+
+#ifdef TEST_MODE
+
+                    test_mode();
+#else
+                    printf("Test mode inactive, release version.\n");
+#endif
+                break;
+                default:
+                    printf("Unknown parameter -%c\n", argv[1][1]);
+                    usage();
+            }
+        } else {
+            printf("Invalid syntax\n");
             usage();
-        }
+        } // TODO check for incorrect arg
 
     }else{
         program();
     }
-#endif // TEST_MODE
 }
 
 
@@ -40,10 +57,10 @@ void program(){
     if(err == WITHOUT_ERRORS){
         output_answers(a, b, c, number_of_roots, x1, x2, &err); //printing answer if no errors
     }
-    print_errors_description(err); //printing errors if any (except errors already printed, as they just prevent output)
 
+    print_errors_description(err); //printing errors if any (except errors already printed, as they just prevent output)
 }
 
 void usage(){
-    printf("Usage: ./program (-h help/-u usage)\n");
+    printf("Usage: ./program (-h help/-u usage/-t unit tests)\n");
 }

@@ -1,5 +1,6 @@
 #include "projectlib.h"
 
+
 //docs to header, no function name
 
 
@@ -123,13 +124,4 @@ void print_not_nan(double x){
         printf("       x=%lg\n", x);
     }
 }
-
-
- bool mystrcmp(char* str1, char* str2){
-    int i=0;
-    do{
-        if(str1[i] != str2[i]){return false;}
-    }while(str1[i++] != '\0');
-    return true;
- }
 
