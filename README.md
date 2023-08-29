@@ -13,4 +13,4 @@ To run in help mode, use bash command $ ./program -h   or   $ ./program_test -h
 
 To run in usage mode, use bash command $ ./program -u   or $ ./program_test -u
 
-To run in test mode, use param -t
+To run in test mode, use bash command $ ./program_test -t
