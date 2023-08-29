@@ -65,7 +65,7 @@ bool unit_test(const test_case* test, size_t i){
                 return true;
             }
     }
-    error_test_case(test, x1, x2, n, i);
+    error_test_case(test, x1, x2, n, (int)i);
     return false;
 }
 
@@ -84,7 +84,7 @@ bool unit_test(const test_case* test, size_t i){
 void error_test_case(const test_case* test, double x1, double x2, int n, int i){ // print_failed_test_info
     printf(COLOR_RED);
     printf("Error in test case %d.\n"
-            "   Tested Equation: ",(int)i);
+            "   Tested Equation: ", i);
     output_equation(test->a, test->b, test->c);
     printf("\n"
             "   Expected results:\n     ");

@@ -6,13 +6,9 @@
  //#define TEST_MODE //to disable test code, encomment this line
 
 /*!
-    main function
-
-    where code executes
+    Function where code is executed
  */
 int main(int argc, char *argv[]){
-printf("%p", argv);
-printf("%p",argv[0]);
 #ifdef TEST_MODE
     test_mode(); //testing
 #else
