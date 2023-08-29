@@ -55,6 +55,7 @@ void output_equation(double a, double b, double c){
             b_sign = sign_no_prev(b);
         }
 
+
         if(!isZero(b)){//if x is to be printed
             printf("%c", b_sign);//print sign of b
             if(!equal_double(fabs(b), 1)){//if quofficient is not 1 or -1
@@ -62,6 +63,7 @@ void output_equation(double a, double b, double c){
             }
             printf("x");//print x
         }
+
 
         if(isZero(a) && isZero(b)){
             c_sign = sign_no_prev(c);
@@ -71,6 +73,7 @@ void output_equation(double a, double b, double c){
             printf("%c", c_sign);//print sign of c
             printf("%lg", fabs(c));//print c itself
         }
+
 
         printf("=0");//equation print finishing
 }
@@ -84,8 +87,6 @@ char sign_with_prev(double a){
     return (a > 0) ? '+' : '-';//return sign of summand
 }
 
- // '\0' ---> ' ' // '\0' ---> ' ' // '\0' ---> ' '
-
 
 
 char sign_no_prev(double a){ // there could be only `a` coef?
@@ -94,4 +95,41 @@ char sign_no_prev(double a){ // there could be only `a` coef?
 }
 
 
+
+
+void print_number_of_roots(int roots_n){
+    switch (roots_n){
+        case(INF_ROOTS):
+            printf("infinite roots");
+            break;
+        case(NO_ROOTS):
+            printf("no roots");
+            break;
+        case(ONE_ROOT):
+            printf("one root:");
+            break;
+        case(TWO_ROOTS):
+            printf("two roots:");
+            break;
+        default:;
+    }
+    printf("\n");
+}
+
+
+
+void print_not_nan(double x){
+    if(!isnan(x)){
+        printf("       x=%lg\n", x);
+    }
+}
+
+
+ bool mystrcmp(char* str1, char* str2){
+    int i=0;
+    do{
+        if(str1[i] != str2[i]){return false;}
+    }while(str1[i++] != '\0');
+    return true;
+ }
 

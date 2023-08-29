@@ -87,13 +87,13 @@ void error_test_case(const test_case* test, double x1, double x2, int n, int i){
             "   Tested Equation: ",(int)i);
     output_equation(test->a, test->b, test->c);
     printf("\n"
-            "   Expected results:\n");
-    print_number_of_roots_dbg( test->n_expected);
+            "   Expected results:\n     ");
+    print_number_of_roots( test->n_expected);
     print_not_nan(test->x1_expected);
     print_not_nan(test->x2_expected);
 
     printf("   Got results:\n");
-    print_number_of_roots_dbg( n);
+    print_number_of_roots( n);
     print_not_nan(x1);
     print_not_nan(x2);
     printf(COLOR_RESET);
@@ -101,39 +101,8 @@ void error_test_case(const test_case* test, double x1, double x2, int n, int i){
 
 
 
-/*
- Function that outputs number of roots
- @param n - number of roots
-*/
-void print_number_of_roots_dbg(int roots_n){
-    printf("     ");
-    switch (roots_n){
-        case(INF_ROOTS):
-            printf("All real numbers");
-            break;
-        case(NO_ROOTS):
-            printf("No roots");
-            break;
-        case(ONE_ROOT):
-            printf("One root:");
-            break;
-        case(TWO_ROOTS):
-            printf("Two roots:");
-            break;
-        default:;
-    }
-    printf("\n");
-}
 
-/*
- Function that prints root if it is not NAN
-*/
 
-void print_not_nan(double x){
-    if(!isnan(x)){
-        printf("       x=%lg\n", x);
-    }
-}
 
 
 /*

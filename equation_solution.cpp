@@ -49,6 +49,7 @@ int square_equation_solution(double a, double b, double c, double* x1, double* x
         }
         return ONE_ROOT;
     }
+
     else {
         if(d < 0){
             return NO_ROOTS;

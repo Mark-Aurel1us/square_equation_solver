@@ -13,22 +13,10 @@ void output_answers(const double a, const double b, const double c, const int nu
     output_equation(a, b, c);//outputting equation canonically
     printf(" has ");
 
-    switch(number){//depending on how much roots the equation has, prints amount of roots
-    case NO_ROOTS://if equation has no roots
-        printf("no roots");
-        break;
-    case ONE_ROOT://if equation has one root
-        printf("1 root: %lg", x1);
-        break;
-    case TWO_ROOTS://if equation has two roots
-        printf("2 roots: %lg and %lg", x1, x2);
-        break;
-    case INF_ROOTS://if equation has infinite roots
-        printf("infinite amount of roots");
-        break;
-    default:
-        *err = ERROR_ROOTS_NUMBER;//error code to be proceeded by debug function
-    }
+    print_number_of_roots(number);
+    print_not_nan(x1);
+    print_not_nan(x2);
+    printf(COLOR_RESET);
 
     printf("\n\n");//new line
 }
@@ -58,7 +46,6 @@ void user_input_reading(double* a, double* b, double* c, char* err){
             *err = WITHOUT_ERRORS;
             return;
         }
-
     }
 
     printf(COLOR_RED "Shut down, stupid user! You are too silly even to type three numbers correctly!\n" COLOR_RESET);//warning user

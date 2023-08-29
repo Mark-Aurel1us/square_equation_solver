@@ -3,18 +3,34 @@
 #include "debugger.h"
 #include "unit_tests.h" //encommenting this line avoids including test mode files
 
-// #define TEST_MODE //to disable test code, encomment this line
+ //#define TEST_MODE //to disable test code, encomment this line
 
 /*!
     main function
 
     where code executes
  */
-int main(){
-
+int main(int argc, char *argv[]){
+printf("%p", argv);
+printf("%p",argv[0]);
 #ifdef TEST_MODE
     test_mode(); //testing
 #else
+    if(argc > 1){
+        if(argv[1][0]=='-'&&argv[1][1]=='h'){
+            help();
+        }else{
+            usage();
+        }
+
+    }else{
+        program();
+    }
+#endif // TEST_MODE
+}
+
+
+void program(){
     char err = WITHOUT_ERRORS;        //error catcher
     double a = NAN, b = NAN, c = NAN; //input values
     double x1 = NAN, x2 = NAN;        //answer data keeper
@@ -30,5 +46,8 @@ int main(){
     }
     print_errors_description(err); //printing errors if any (except errors already printed, as they just prevent output)
 
-#endif // TEST_MODE
+}
+
+void usage(){
+    printf("Usage: ./program (-h help/-u usage)\n");
 }

@@ -108,6 +108,30 @@ char sign_no_prev(double a);
  */
 char sign_with_prev(double a);
 
+/*!
+ Function that outputs number of roots
+ @param n - number of roots
+*/
+void print_number_of_roots(int roots_n);
+
+/*!
+ Function that prints root if it is not NAN
+*/
+void print_not_nan(double x);
 
 
+/*!
+ If no command line arguments, this program is executed
+*/
+void program();
+
+/*!
+ Outputs command line usage if user inputs wrong command arguments
+*/
+void usage();
+
+/*!
+ Compares two strings
+ */
+ bool mystrcmp(char* str1, char* str2);
 #endif // PROJECTLIB_H_INCLUDED
