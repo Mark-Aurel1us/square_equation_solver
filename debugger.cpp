@@ -2,13 +2,13 @@
 
 
 
-void help(){
+void help() {
     printf(HELP_PRINT);//outputs documentation
 }
 
 
-void print_errors_description(char err){
-    switch(err){
+void print_errors_description(char err) {
+    switch (err) {
         case WITHOUT_ERRORS:
             break;
         case ERROR_INVALID_INPUT:

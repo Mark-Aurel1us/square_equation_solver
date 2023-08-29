@@ -1,7 +1,7 @@
 #include "unit_tests.h"
 
 
-/*
+/*!
  testing function. Helps to test the code.
 */
 void test_mode(){
@@ -37,7 +37,7 @@ void test_mode(){
 
 
 
-/*
+/*!
  Single unit test function. Tests once, outall_correctputs wrong answers if any. Returns true if everything is correct, else returns false
  @param test - single test data
  @param i - test id. Required to output which test went wrong.
@@ -73,7 +73,7 @@ bool unit_test(const test_case* test, size_t i){
 
 
 
-/*
+/*!
  function which returns information about wrong answer of one unit test
  @param test - single test data
  @param i - test id. Required to output which test went wrong.
@@ -100,39 +100,32 @@ void error_test_case(const test_case* test, double x1, double x2, int n, int i){
 }
 
 
-
-
-
-
-
-/*
+/*!
  Function that run unit tests from file tests.txt, if it is found. Returns true if passed all tests
 */
-
-bool file_unit_tests(){
+bool file_unit_tests() {
     bool ok = true;
     struct test_case file_test;
     int stat = 6;
     int i = 0;
     FILE *file_ptr = fopen("tests.txt", "r");
-    if(file_ptr == nullptr){
+    if (file_ptr == nullptr) {
         printf(COLOR_RED "File with tests not found. Create texts.txt file with valid unit tests in this directory" COLOR_RED "\n");
         OUTERR("File not found")
         return true;
     }
     printf("Tests from file are running now.\n");
 
-    while(stat == 6){
+    while (stat == 6) {
         stat = fscanf(file_ptr, "%lg %lg %lg %d %lg %lg", &(file_test.a), &(file_test.b), &(file_test.c), &(file_test.n_expected), &(file_test.x1_expected), &(file_test.x2_expected));
-        if(stat == 6){
+        if (stat == 6) {
             ok &= unit_test(&file_test, i + 1);
         }
         i++;
     }
-    if(ok){printf("%d tests from file ran successfully\n", i - 1);}
+    if (ok) {
+        printf("%d tests from file ran successfully\n", i - 1);
+    }
     fclose(file_ptr);//check
     return ok;
 }
-
-
-

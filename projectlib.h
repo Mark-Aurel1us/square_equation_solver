@@ -10,12 +10,9 @@
 #include <string.h>
 
 //constants
-
-const int CORRECT_SCAN_STATUS = 3;
 const double ESTIMATION = 1e-5;
 const double EXPONENTIAL_ESTIMATION = 1e-6;
-const int TRIES_TO_TYPE = 7;
-const int LAST_TRY = 1;
+
 
 //enums
 
@@ -53,7 +50,6 @@ enum RootsNumber {     ///two roots
 
     returns true if doubles are approximately equal
     else returns false
-    NANs are equal !important
 
 
     @param a - first quofficient of square equation a*x^2+b*x+c=0
@@ -68,7 +64,7 @@ bool equal_double(double first_double, double second_double);
     else returns false
 
  */
-bool isZero(double number); // TODO reanme is_zero()
+bool is_zero(double number);
 
 /*!
     output_equation function
@@ -94,12 +90,12 @@ void format_output(double* x);
 /*!
     sign_no_prev function
     if there is no another summand before this summand, we mustn't write +, so,
-    this function returns only negative sign of the summand (-). Instead of +, returns null-character '\0'
+    this function returns only negative sign of the summand (-). Instead of +, returns ' '
 
     @param a - quofficient of square equation
 
  */
-char sign_no_prev(double a);
+char sign_no_prev(double t);
 
 /*!
     sign_with_prev function
@@ -109,7 +105,7 @@ char sign_no_prev(double a);
     @param a - quofficient of square equation
 
  */
-char sign_with_prev(double a);
+char sign_with_prev(double t);
 
 /*!
  Function that outputs number of roots

@@ -4,6 +4,8 @@
 #include "debugger.h"
 #include "projectlib.h"
 
+const int TRIES_TO_TYPE = 7;
+const int CORRECT_SCAN_STATUS = 3;
 
 /*!
     user_input_reading function
