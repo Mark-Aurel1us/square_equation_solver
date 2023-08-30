@@ -1,35 +1,35 @@
 #!/bin/bash
 #release version
 
-if [[ "main.cpp" -nt "main.o" ]]
+if [[ "main.cpp" -nt "main.o" || "projectlib.h" -nt "main.o" || "unit_tests.h" -nt "main.o" || "input_output.h" -nt "main.o" || "equation_solution.h" -nt "main.o" || "debugger.h" -nt "main.o" ]]
 then
 	g++ -c main.cpp
 	echo main.o rebuilt
 fi
 
 
-if [[ "debugger.cpp" -nt "debugger.o" ]]
+if [[ "debugger.cpp" -nt "debugger.o" ||  "debugger.h" -nt "debugger.o"  || "projectlib.h" -nt "debugger.o" ]]
 then
 	g++ -c debugger.cpp
 	echo debugger.o rebuilt
 fi
 
 
-if [[ "equation_solution.cpp" -nt "equation_solution.o" ]]
+if [[ "equation_solution.cpp" -nt "equation_solution.o" || "equation_solution.h" -nt "equation_solution.o" || "projectlib.h" -nt "equation_solution.o" ]]
 then
 	g++ -c equation_solution.cpp
 	echo equation_solution.o rebuilt
 fi
 
 
-if [[ "input_output.cpp" -nt "input_output.o" ]]
+if [[ "input_output.cpp" -nt "input_output.o" || "input_output.h" -nt "input_output.o" || "projectlib.h" -nt "input_output.o" ||  "debugger.h" -nt "input_output.o" ]]
 then
 	g++ -c input_output.cpp
 	echo input_output.o rebuilt
 fi
 
 
-if [[ "projectlib.cpp" -nt "projectlib.o" ]]
+if [[ "projectlib.cpp" -nt "projectlib.o" || "projectlib.h" -nt "projectlib.o" ]]
 then
 	g++ -c projectlib.cpp
 	echo projectlib.o rebuilt
