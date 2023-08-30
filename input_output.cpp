@@ -1,7 +1,7 @@
 #include "input_output.h"
 
+void output_answers(const double a, const double b, const double c, const int number, double x1, double x2, char* err) {
 
-void output_answers(const double a, const double b, const double c, const int number, double x1, double x2, char* err){
     format_output(&x1);// avoid -0 output
     format_output(&x2);// avoid -0 output
 
@@ -21,28 +21,35 @@ void output_answers(const double a, const double b, const double c, const int nu
     printf("\n\n");//new line
 }
 
+void user_input_reading(double* a, double* b, double* c, char* err, const int mode) {
 
-
-void user_input_reading(double* a, double* b, double* c, char* err){
-
-    for(int i = 0; i < TRIES_TO_TYPE; i++){//backward counter to prevent from long recursion and to output help docs only the first time user typed wrong
+    for (int i = 0; i < TRIES_TO_TYPE; i++) {//backward counter to prevent from long recursion and to output help docs only the first time user typed wrong
 
         assert(a != nullptr);
         assert(b != nullptr);
         assert(c != nullptr);
 
-        printf("Input 3 numbers\n");//ask user to type
-        int scan_status = scanf("%lg %lg %lg", a, b, c);// scanning numbers, counting how much scanned successfully (must be CORRECT_SCAN_STATUS=3)
+        printf("Input %d numbers\n", mode);//ask user to type
+
+        int scan_status;
+        if (mode == SQUARE_MODE) {
+            scan_status = scanf("%lg %lg %lg", a, b, c);// scanning numbers, counting how much scanned successfully (must be CORRECT_SCAN_STATUS=3)
+        } else if (mode == LINEAR_MODE) {
+            *a = 0;
+            scan_status = scanf("%lg %lg", b, c) + 1;//1 is for scanned a
+        } else {
+            *err = ERROR_INVALID_MODE;
+        }
 
         if (buffer_eraser() || scan_status != CORRECT_SCAN_STATUS){ //if garbage found or scanned less than 3 variables
             print_errors_description(ERROR_INVALID_INPUT);//throwing exception via dbg function if something wrong with input
 
-            if(i == 0){//the first time user typed wrong
+            if (i == 0) {//the first time user typed wrong
                 help();//output help documentation
                 printf("Please, read documentation and try again.\n");//ask user to retry
             }
 
-        }else{
+        } else {
             *err = WITHOUT_ERRORS;
             return;
         }
@@ -50,16 +57,15 @@ void user_input_reading(double* a, double* b, double* c, char* err){
 
     printf(COLOR_RED "Shut down, stupid user! You are too silly even to type three numbers correctly!\n" COLOR_RESET);//warning user
     *err = ERROR_UNCAUGHT;//preventing wrong output with error code
-
 }
 
+bool buffer_eraser() {
 
-bool buffer_eraser(){
     bool ret = false; //this variable checks whether string has garbage or not
     int c = getchar();//reading next character
 
-    while(c != '\n'&& c != EOF){//until the end of line checks
-        if(!isspace(c)){
+    while (c != '\n'&& c != EOF) {//until the end of line checks
+        if (!isspace(c)) {
             ret = true;
         }
         c = getchar();//reading next character

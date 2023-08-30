@@ -1,17 +1,13 @@
 #include "projectlib.h"
 
-
-//docs to header, no function name
-
-
 void format_output(double* x) { // fix_zero
+
     assert(x != nullptr);
     *x = is_zero(*x) ? 0 : *x;
 }
 
-
-
 bool equal_double(double first_double, double second_double) {
+
     if (isnan(second_double) || isnan(first_double)) {
         return false;
     }
@@ -28,13 +24,10 @@ bool equal_double(double first_double, double second_double) {
     return false;    //otherwise,
 }
 
-
-
 bool is_zero(double number) { //checks whether number is equal to 0
+
     return fabs(number) < ESTIMATION;//returning comparison
 }
-
-
 
 void output_equation(double a, double b, double c) {
 
@@ -77,28 +70,24 @@ void output_equation(double a, double b, double c) {
         printf("=0");//equation print finishing
 }
 
-
-
 char sign_with_prev(double t) {
+
     if (is_zero(t)) {
         return '+';
     }//not to write -0
     return (t > 0) ? '+' : '-';//return sign of summand
 }
 
+char sign_no_prev(double t) {
 
-
-char sign_no_prev(double t) { // there could be only `a` coef?
     if (is_zero(t)) {
         return ' ';
     }//not to write -0
     return (t > 0) ? ' ' : '-';//return sign of summand
 }
 
-
-
-
 void print_number_of_roots(int roots_n) {
+
     switch (roots_n){
         case (INF_ROOTS):
             printf("infinite roots");
@@ -117,9 +106,8 @@ void print_number_of_roots(int roots_n) {
     printf("\n");
 }
 
-
-
 void print_not_nan(double x) {
+
     if (!isnan(x)) {
         printf("       x=%lg\n", x);
     }

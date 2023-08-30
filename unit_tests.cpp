@@ -1,10 +1,10 @@
 #include "unit_tests.h"
 
-
 /*!
  testing function. Helps to test the code.
 */
-void test_mode(){
+void test_mode(const char* filename) {
+
     printf("TEST MODE ACTIVATED\n");
 
     bool all_correct = true;
@@ -24,25 +24,23 @@ void test_mode(){
         }
     };
 
-    for(size_t i = 0; i < sizeof(tests)/sizeof(tests[0]); i++){
+    for (size_t i = 0; i < sizeof(tests)/sizeof(tests[0]); i++) {
         all_correct &= unit_test(tests + i, i + 1);// &tests[i]
     }
 
-    all_correct &= file_unit_tests();
+    all_correct &= file_unit_tests(filename);
 
-    if(all_correct){
+    if (all_correct) {
         printf(COLOR_GREEN "All tests passed successfully!\n" COLOR_RESET);
     }
 }
-
-
 
 /*!
  Single unit test function. Tests once, outall_correctputs wrong answers if any. Returns true if everything is correct, else returns false
  @param test - single test data
  @param i - test id. Required to output which test went wrong.
 */
-bool unit_test(const test_case* test, size_t i){
+bool unit_test(const test_case* test, size_t i) {
 
     char err = WITHOUT_ERRORS;
     double x1 = NAN,
@@ -50,28 +48,24 @@ bool unit_test(const test_case* test, size_t i){
 
     int n = square_equation_solution(test->a, test->b, test->c, &x1, &x2, &err);
 
-    if(n == test->n_expected && err == WITHOUT_ERRORS){
-            if(n == 0 || n == INF_ROOTS){
-                return true;
-            }
-            if(n == 1 && equal_double(x1, test->x1_expected)){
-                return true;
-            }
-            if(n == 2 && equal_double(x1, test->x1_expected) && equal_double(x2, test->x2_expected)){
-                return true;
-            }
+    if (n == test->n_expected && err == WITHOUT_ERRORS) {
+        if (n == 0 || n == INF_ROOTS) {
+            return true;
+        }
+        if (n == 1 && equal_double(x1, test->x1_expected)) {
+            return true;
+        }
+        if (n == 2 && equal_double(x1, test->x1_expected) && equal_double(x2, test->x2_expected)) {
+            return true;
+        }
 
-            if(n == 2 && equal_double(x2, test->x1_expected) && equal_double(x1, test->x2_expected)){
-                return true;
-            }
+        if (n == 2 && equal_double(x2, test->x1_expected) && equal_double(x1, test->x2_expected)) {
+            return true;
+        }
     }
     error_test_case(test, x1, x2, n, (int)i);
     return false;
 }
-
-
-
-
 
 /*!
  function which returns information about wrong answer of one unit test
@@ -81,36 +75,45 @@ bool unit_test(const test_case* test, size_t i){
  @param x2 - got answer
  @param n - got roots count
 */
-void error_test_case(const test_case* test, double x1, double x2, int n, int i){ // print_failed_test_info
+void error_test_case(const test_case* test, double x1, double x2, int n, int i) { // print_failed_test_info
     printf(COLOR_RED);
-    printf("Error in test case %d.\n"
+    printf( "Error in test case %d.\n"
+            COLOR_RESET
             "   Tested Equation: ", i);
     output_equation(test->a, test->b, test->c);
     printf("\n"
             "   Expected results:\n     ");
-    print_number_of_roots( test->n_expected);
-    print_not_nan(test->x1_expected);
-    print_not_nan(test->x2_expected);
+    print_number_of_roots(test->n_expected);
+    if (test->n_expected > 0) { print_root_test(test->x1_expected);}
+    if (test->n_expected == 2) { print_root_test(test->x2_expected);}
 
-    printf("   Got results:\n");
-    print_number_of_roots( n);
-    print_not_nan(x1);
-    print_not_nan(x2);
+    printf(COLOR_RED);
+    printf("   Got results:\n     ");
+    print_number_of_roots(n);
+    if (n > 0) { print_root_test(x1); }
+    if (n == 2) { print_root_test(x2); }
     printf(COLOR_RESET);
 }
-
+/*!
+    prints one root
+ */
+void print_root_test(double x) {
+    printf("       x=%lg\n", x);
+}
 
 /*!
  Function that run unit tests from file tests.txt, if it is found. Returns true if passed all tests
 */
-bool file_unit_tests() {
+bool file_unit_tests(const char* filename) {
+
     bool ok = true;
     struct test_case file_test;
     int stat = 6;
     int i = 0;
-    FILE *file_ptr = fopen("tests.txt", "r");
+    FILE *file_ptr = fopen(filename, "r");
+
     if (file_ptr == nullptr) {
-        printf(COLOR_RED "File with tests not found. Create texts.txt file with valid unit tests in this directory" COLOR_RED "\n");
+        printf(COLOR_RED "File with tests not found. Create %s file with valid unit tests in this directory" COLOR_RED "\n", filename);
         OUTERR("File not found")
         return true;
     }

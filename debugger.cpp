@@ -1,13 +1,12 @@
 #include "debugger.h"
 
-
-
 void help() {
+
     printf(HELP_PRINT);//outputs documentation
 }
 
-
 void print_errors_description(char err) {
+
     switch (err) {
         case WITHOUT_ERRORS:
             break;
@@ -30,4 +29,3 @@ void print_errors_description(char err) {
             OUTERR("Unknown Error")
     }
 }
-

@@ -10,5 +10,7 @@ var files_dup =
     [ "projectlib.cpp", "projectlib_8cpp.html", "projectlib_8cpp" ],
     [ "projectlib.h", "projectlib_8h.html", "projectlib_8h" ],
     [ "unit_tests.cpp", "unit__tests_8cpp.html", "unit__tests_8cpp" ],
-    [ "unit_tests.h", "unit__tests_8h.html", "unit__tests_8h" ]
+    [ "unit_tests.h", "unit__tests_8h.html", "unit__tests_8h" ],
+    [ "user_input.cpp", "user__input_8cpp.html", null ],
+    [ "user_input.h", "user__input_8h.html", null ]
 ];

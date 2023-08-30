@@ -15,7 +15,7 @@ const int CORRECT_SCAN_STATUS = 3;
     @param c - third quofficient of square equation
     @param err (out) - variable where error code is to be stored
  */
-void user_input_reading(double* a, double* b, double* c, char* err);
+void user_input_reading(double* a, double* b, double* c, char* err, const int mode);
 
 /*!
     output_answers function

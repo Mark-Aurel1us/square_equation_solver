@@ -8,48 +8,66 @@
 /*!
     Function where code is executed
  */
-int main(int argc, char *argv[]) {
+int main(const int argc, const char *argv[]) {
 
     if (argc > 1) {
-        if (strlen(argv[1]) == 2 && argv[1][0]=='-') {
-            switch (argv[1][1]) {
-                case 'h':
-                    help();
-                    break;
-                case 'u':
-                    usage();
-                    break;
-                case 't':
-
-#ifdef TEST_MODE
-
-                    test_mode();
-#else
-                    printf("Test mode inactive, release version.\n");
-#endif
-                break;
-                default:
-                    printf("Unknown parameter -%c\n", argv[1][1]);
-                    usage();
-            }
-        } else {
-            printf("Invalid syntax\n");
-            usage();
+        for (int i = 1; i < argc; i ++){
+            proceed_command_line(argv[i]);
+            printf("\n");
         }
-
     } else {
-        program();
+        program(SQUARE_MODE);
     }
 }
 
+bool proceed_command_line(const char* arg){
+    if (strlen(arg) > 1 && arg[0]=='-') {
+        switch (arg[1]) {
+            case 'h':
+                help();
+                break;
+            case 'u':
+                usage();
+                break;
+            case 't':
 
-void program() {
+#ifdef TEST_MODE
+                if (strlen(arg)<4) {
+                    test_mode("texts.txt");
+                } else if (arg[2]=='=') {
+                    test_mode(arg+3);
+                } else {
+                    printf("Invalid syntax\n");
+                    usage();
+                }
+#else
+                printf("Test mode inactive, release version.\n");
+#endif
+                break;
+            case 's':
+                program(SQUARE_MODE);
+                break;
+            case 'l':
+                program(LINEAR_MODE);
+                break;
+            default:
+                printf("Unknown parameter -%c\n", arg[1]);
+                usage();
+        }
+    } else {
+        printf("Invalid syntax\n");
+        usage();
+    }
+    return true;
+}
+
+void program(const int mode) {
     char err = WITHOUT_ERRORS;        //error catcher
     double a = NAN, b = NAN, c = NAN; //input values
     double x1 = NAN, x2 = NAN;        //answer data keeper
     int number_of_roots = INCORRECT_ROOTS;
 
-    user_input_reading(&a, &b, &c, &err); //importing values, 7 tries to type
+    user_input_reading(&a, &b, &c, &err, mode); //importing values, 7 tries to type
     if (err == WITHOUT_ERRORS) {
         number_of_roots = square_equation_solution(a, b, c, &x1, &x2, &err); //solving equation
     }
@@ -62,5 +80,9 @@ void program() {
 }
 
 void usage() {
-    printf("Usage: ./program (-h help/-u usage/-t unit tests)\n");
+    printf("Usage: ./program"
+#ifdef TEST_MODE
+    "_test"
+#endif
+    " (-h help/-u usage/-t(=testfilename.ext) unit tests/-s forced standart mode)\n");
 }

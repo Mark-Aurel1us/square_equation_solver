@@ -6,10 +6,11 @@
 
 
 
-bool file_unit_tests();
-void test_mode();
+bool file_unit_tests(const char* filename);
+void test_mode(const char* filename);
 bool unit_test(const struct test_case* test, size_t i);
 void error_test_case(const test_case* test, double x1, double x2, int n, int i);
+void print_root_test(double x);
 //structures
 /**
 

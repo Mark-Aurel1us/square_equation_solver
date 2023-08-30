@@ -3,8 +3,6 @@
 
 #include "projectlib.h"
 
-
-
 /*!
     square_equation_solution function
 
@@ -42,7 +40,5 @@ int linear_equation_solution(double b, double c, double* x1, char*err);
     @param c - third quofficient of square equation
  */
 double discriminant(double a, double b, double c);
-
-
 
 #endif // EQUATION_SOLUTION_H_INCLUDED

@@ -1,7 +1,6 @@
 #ifndef PROJECTLIB_H_INCLUDED
 #define PROJECTLIB_H_INCLUDED
 
-
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
@@ -13,25 +12,29 @@
 const double ESTIMATION = 1e-5;
 const double EXPONENTIAL_ESTIMATION = 1e-6;
 
-
 //enums
-
 ///error codes
-enum Errors {               ///zero code if no errors
+enum errors {               ///zero code if no errors
     WITHOUT_ERRORS = '0',       ///one code for invalid input (for printing non-fatal input error)
     ERROR_INVALID_INPUT = '1',  ///two code for mathematical errors
     ERROR_MATHEMATICAL = '2',   ///three code for preventing output (also used when input is invalid but for non-outputting purpose)
     ERROR_UNCAUGHT = '3',
-    ERROR_ROOTS_NUMBER = '4'
+    ERROR_ROOTS_NUMBER = '4',   ///5 code for invalid mode
+    ERROR_INVALID_MODE = '5'
 };
 
 ///possible roots counts codes
-enum RootsNumber {     ///two roots
-    TWO_ROOTS = 2,     ///infinite roots
-    INF_ROOTS = 574,   ///one root
+enum roots_number {     ///two roots
+    TWO_ROOTS = 2,     ///infinite roots, negative in order not to output roots if there are infinite (comparison with 0 shows whether to show roots or no)
+    INF_ROOTS = -574,   ///one root
     ONE_ROOT = 1,      ///0 roots
     NO_ROOTS = 0,      ///example incorrect root number
     INCORRECT_ROOTS = 575
+};
+///work modes, shows number of roots to input
+enum work_mode {        ///solving square equation
+    SQUARE_MODE = 3,    ///solving linear equation
+    LINEAR_MODE = 2
 };
 
 //definition of colours
@@ -39,16 +42,12 @@ enum RootsNumber {     ///two roots
 #define COLOR_RESET "\033[39m"
 #define COLOR_GREEN "\033[32m"
 
-
 //macros
 #define OUTERR(X) fprintf(stderr, X "\n");
 
-
 //functions declarations
 /*!
-    equal_double function
-
-    returns true if doubles are approximately equal
+    Function that returns true if doubles are approximately equal
     else returns false
 
 
@@ -59,7 +58,6 @@ enum RootsNumber {     ///two roots
 bool equal_double(double first_double, double second_double);
 
 /*!
-    isZero function
     if number is very little, its module is less than epsilon (ESTIMATION), returns true
     else returns false
 
@@ -67,8 +65,7 @@ bool equal_double(double first_double, double second_double);
 bool is_zero(double number);
 
 /*!
-    output_equation function
-    prints equation canonically, e.g. 0=0, -x+3=0, x^2-7=0, etc
+   Function that prints equation canonically, e.g. 0=0, -x+3=0, x^2-7=0, etc
 
     @param a - first quotient of square equation a*x^2+b*x+c=0
     @param b - second quotient of square equation
@@ -122,11 +119,15 @@ void print_not_nan(double x);
 /*!
  If no command line arguments, this program is executed
 */
-void program();
+void program(const int mode);
 
 /*!
  Outputs command line usage if user inputs wrong command arguments
 */
 void usage();
 
+/*!
+ Proceeds single param from command line
+ */
+bool proceed_command_line(const char* arg);
 #endif // PROJECTLIB_H_INCLUDED

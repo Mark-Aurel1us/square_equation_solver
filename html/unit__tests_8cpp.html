@@ -68,14 +68,16 @@ $(document).ready(function(){initNavTree('unit__tests_8cpp.html',''); initResiza
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a02d3b4dfd374b37c7f7de57cf9257fe9" id="r_a02d3b4dfd374b37c7f7de57cf9257fe9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unit__tests_8cpp.html#a02d3b4dfd374b37c7f7de57cf9257fe9">test_mode</a> ()</td></tr>
-<tr class="separator:a02d3b4dfd374b37c7f7de57cf9257fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a465782dbca260d3b9ce0080de2d1895b" id="r_a465782dbca260d3b9ce0080de2d1895b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unit__tests_8cpp.html#a465782dbca260d3b9ce0080de2d1895b">test_mode</a> (const char *filename)</td></tr>
+<tr class="separator:a465782dbca260d3b9ce0080de2d1895b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d9a43ac1bfd2944510e6c1543c0f824" id="r_a5d9a43ac1bfd2944510e6c1543c0f824"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unit__tests_8cpp.html#a5d9a43ac1bfd2944510e6c1543c0f824">unit_test</a> (const <a class="el" href="structtest__case.html">test_case</a> *test, size_t i)</td></tr>
 <tr class="separator:a5d9a43ac1bfd2944510e6c1543c0f824"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38326539c2956e7ad1a441ffa8225cde" id="r_a38326539c2956e7ad1a441ffa8225cde"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unit__tests_8cpp.html#a38326539c2956e7ad1a441ffa8225cde">error_test_case</a> (const <a class="el" href="structtest__case.html">test_case</a> *test, double x1, double x2, int n, int i)</td></tr>
 <tr class="separator:a38326539c2956e7ad1a441ffa8225cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59da9ec374c517e422329ac4b1113e45" id="r_a59da9ec374c517e422329ac4b1113e45"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unit__tests_8cpp.html#a59da9ec374c517e422329ac4b1113e45">file_unit_tests</a> ()</td></tr>
-<tr class="separator:a59da9ec374c517e422329ac4b1113e45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac782fa3d345f8da6500b8d852e70ec33" id="r_ac782fa3d345f8da6500b8d852e70ec33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unit__tests_8cpp.html#ac782fa3d345f8da6500b8d852e70ec33">print_root_test</a> (double x)</td></tr>
+<tr class="separator:ac782fa3d345f8da6500b8d852e70ec33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f6b5046845593cfc5a6bb92549b2e8c" id="r_a2f6b5046845593cfc5a6bb92549b2e8c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unit__tests_8cpp.html#a2f6b5046845593cfc5a6bb92549b2e8c">file_unit_tests</a> (const char *filename)</td></tr>
+<tr class="separator:a2f6b5046845593cfc5a6bb92549b2e8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a38326539c2956e7ad1a441ffa8225cde" name="a38326539c2956e7ad1a441ffa8225cde"></a>
@@ -134,8 +136,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a59da9ec374c517e422329ac4b1113e45" name="a59da9ec374c517e422329ac4b1113e45"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a59da9ec374c517e422329ac4b1113e45">&#9670;&#160;</a></span>file_unit_tests()</h2>
+<a id="a2f6b5046845593cfc5a6bb92549b2e8c" name="a2f6b5046845593cfc5a6bb92549b2e8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f6b5046845593cfc5a6bb92549b2e8c">&#9670;&#160;</a></span>file_unit_tests()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -143,7 +145,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">bool file_unit_tests </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -152,8 +155,27 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a02d3b4dfd374b37c7f7de57cf9257fe9" name="a02d3b4dfd374b37c7f7de57cf9257fe9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02d3b4dfd374b37c7f7de57cf9257fe9">&#9670;&#160;</a></span>test_mode()</h2>
+<a id="ac782fa3d345f8da6500b8d852e70ec33" name="ac782fa3d345f8da6500b8d852e70ec33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac782fa3d345f8da6500b8d852e70ec33">&#9670;&#160;</a></span>print_root_test()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void print_root_test </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>prints one root </p>
+
+</div>
+</div>
+<a id="a465782dbca260d3b9ce0080de2d1895b" name="a465782dbca260d3b9ce0080de2d1895b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a465782dbca260d3b9ce0080de2d1895b">&#9670;&#160;</a></span>test_mode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -161,7 +183,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void test_mode </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
           <td></td>
         </tr>
       </table>

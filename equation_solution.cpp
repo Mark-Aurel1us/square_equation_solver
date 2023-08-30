@@ -1,11 +1,9 @@
 #include "equation_solution.h"
 
-
-
 double discriminant(const double a, const double b, const double c) {
+
     return b * b - 4 * a * c;//returning double value of the discriminant
 }
-
 
 int linear_equation_solution(double b, double c, double* x1, char*err) {
 
@@ -19,11 +17,10 @@ int linear_equation_solution(double b, double c, double* x1, char*err) {
             return NO_ROOTS;//c=0 has no roots if c!=0
         }
     } else { //case a==0
-            *x1 = -c / b; //b*x+c==0 b*x==-c x==-c/b
-        }
-        return ONE_ROOT; //x==-c/b - only one root
+        *x1 = -c / b; //b*x+c==0 b*x==-c x==-c/b
+    }
+    return ONE_ROOT; //x==-c/b - only one root
 }
-
 
 int square_equation_solution(double a, double b, double c, double* x1, double* x2, char* err) {
 
@@ -42,16 +39,16 @@ int square_equation_solution(double a, double b, double c, double* x1, double* x
 
     double d = discriminant(a, b, c);//calculating discriminant
 
-    if(is_zero(d)) {    //null discriminant, one root only
+    if (is_zero(d)) {    //null discriminant, one root only
         *x1 = -b / (2 * a);    //calculation by formula
-        if(!isfinite(*x1)) {
+        if (!isfinite(*x1)) {
             *err = ERROR_MATHEMATICAL;    //preventing from wrong calculation/overflow/etc (i dont know)
         }
         return ONE_ROOT;
     }
 
     else {
-        if(d < 0) {
+        if (d < 0) {
             return NO_ROOTS;
         }
 
